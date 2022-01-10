@@ -53,6 +53,37 @@ const getAllProducts = (req, res) => {
 };
 /**************************************************************** */
 
+const getProductById = (req, res) => {
+  let product_id = req.params.id;
+  productsModel
+    .findById(product_id)
+    .exec()
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The Product not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `The Product ${product_id} `,
+        product: result,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
+/************************************************************** */
+
+
+
+
 // update // delete // admin
 //get gatogrey by title
 // get product by object-id (gatgrey) // filteration
@@ -62,4 +93,5 @@ const getAllProducts = (req, res) => {
 module.exports = {
   createNewProduct,
   getAllProducts,
+  getProductById,
 };
