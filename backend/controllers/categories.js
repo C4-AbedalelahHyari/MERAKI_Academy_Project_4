@@ -46,8 +46,7 @@ const getAllCategories = (req, res) => {
       });
     });
 };
-
-/************************************* */
+/************************************************* */
 const getCategoryByTitle = (req, res) => {
   let category_title = req.params.title;
   categoriesModel

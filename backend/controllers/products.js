@@ -124,13 +124,31 @@ const deleteProductById = (req, res) => {
     });
 };
 /******************************************************** */
-// update // delete // admin
-// get product by object-id (gatgrey) // filteration
-
+const getProductsByCategory = (req, res) => {
+  // the categoryName will be an Object_id
+  let categoryName = req.params.id;
+  productsModel
+    .find({ category: categoryName })
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: `All the Products with this category: ${categoryName}`,
+        products: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
+/************************************************************* */
 module.exports = {
   createNewProduct,
   getAllProducts,
   getProductById,
   updateProductById,
   deleteProductById,
+  getProductsByCategory,
 };
