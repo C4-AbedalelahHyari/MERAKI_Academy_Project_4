@@ -4,9 +4,10 @@ const {
   getAllCategories,
   getCategoryByTitle,
 } = require("../controllers/categories");
-
+/*************************************************** */
 const authentication = require("../middleware/authentication");
 const { authorization } = require("../middleware/authorization");
+/************************************************ */
 const categoriesRouter = express.Router();
 
 categoriesRouter.post(
@@ -16,8 +17,8 @@ categoriesRouter.post(
   createCategory
 );
 
-categoriesRouter.get("/", getAllCategories);
+categoriesRouter.get("/", authentication, getAllCategories);
 
-categoriesRouter.get("/:title", getCategoryByTitle);
+categoriesRouter.get("/:title", authentication, getCategoryByTitle);
 
 module.exports = categoriesRouter;
