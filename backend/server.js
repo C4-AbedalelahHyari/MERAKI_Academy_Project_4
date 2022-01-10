@@ -23,6 +23,10 @@ app.use("/users", usersRouter);
 // import the productsRouter
 const productsRouter = require("./routes/products");
 app.use("/products", productsRouter);
+
+// import the ordersRouter
+const ordersRouter = require("./routes/orders");
+app.use("/orders", ordersRouter);
 /******************************* */
 app.listen(PORT, () => {
   console.log(`SERVER WORKING ON PORT: ${PORT}`);
