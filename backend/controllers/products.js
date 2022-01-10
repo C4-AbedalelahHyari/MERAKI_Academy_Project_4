@@ -81,17 +81,35 @@ const getProductById = (req, res) => {
 };
 /************************************************************** */
 
-
+const updateProductById = (req, res) => {
+  let product_id = req.params.id;
+  productsModel
+    .findByIdAndUpdate(product_id, req.body, { new: true })
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The Product not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `The Product ${product_id} `,
+        product: result,
+      });
+    });
+};
+/************************************************************** */
 
 
 // update // delete // admin
 //get gatogrey by title
 // get product by object-id (gatgrey) // filteration
-// get product by id
-// get prdouct by id // search
 
 module.exports = {
   createNewProduct,
   getAllProducts,
   getProductById,
+  updateProductById,
+  
 };
