@@ -68,16 +68,13 @@ const login = (req, res) => {
     .populate("role", "-_id -__v")
     .then(async (result) => {
       if (!result) {
-        console.log(result);
         return res.status(404).json({
           success: false,
           message: `The email doesn't exist`,
         });
       }
-      console.log(result);
       try {
         const valid = await bcrypt.compare(password, result.password);
-        console.log(valid);
         if (!valid) {
           return res.status(403).json({
             success: false,
@@ -86,7 +83,7 @@ const login = (req, res) => {
         }
         const payload = {
           userId: result._id,
-          userName: result.userId,
+          userName: result.userName,
           role: result.role,
         };
 
@@ -104,14 +101,13 @@ const login = (req, res) => {
       }
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({
         success: false,
         message: `Server Error`,
       });
     });
 };
-/********************* */
+/****************************************************** */
 module.exports = {
   createNewUser,
   getAllUsers,

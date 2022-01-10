@@ -3,7 +3,7 @@ const ordersModel = require("../database/models/orders");
 const getAllOrders = (req, res) => {
   ordersModel
     .find({})
-    .populate("orders")
+    .populate("product_id user_id")
     .then((orders) => {
       if (orders.length) {
         res.status(200).json({
@@ -25,7 +25,7 @@ const getAllOrders = (req, res) => {
       });
     });
 };
-/********************** */
+/******************************************************************************** */
 const createOrder = (req, res) => {
   const { product_id, user_id } = req.body;
   const newOrder = new ordersModel({
@@ -37,7 +37,7 @@ const createOrder = (req, res) => {
     .then((order) => {
       res.status(201).json({
         success: true,
-        message: `The Category has been created`,
+        message: `The Order has been created`,
         order: order,
       });
     })
