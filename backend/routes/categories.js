@@ -5,9 +5,10 @@ const {
   getCategoryByTitle,
 } = require("../controllers/categories");
 
+const authentication = require("../middleware/authentication");
 const categoriesRouter = express.Router();
 
-categoriesRouter.post("/", createCategory);
+categoriesRouter.post("/", authentication, createCategory);
 
 categoriesRouter.get("/", getAllCategories);
 
