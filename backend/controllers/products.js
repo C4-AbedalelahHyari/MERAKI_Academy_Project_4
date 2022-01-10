@@ -100,8 +100,30 @@ const updateProductById = (req, res) => {
     });
 };
 /************************************************************** */
-
-
+const deleteProductById = (req, res) => {
+  let product_id = req.params.id;
+  productsModel
+    .findByIdAndDelete(product_id)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The Product not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `Succeeded to delete product with id: ${product_id}`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
+/******************************************************** */
 // update // delete // admin
 //get gatogrey by title
 // get product by object-id (gatgrey) // filteration
@@ -111,5 +133,5 @@ module.exports = {
   getAllProducts,
   getProductById,
   updateProductById,
-  
+  deleteProductById,
 };
