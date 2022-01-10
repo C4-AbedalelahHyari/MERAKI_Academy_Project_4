@@ -26,16 +26,23 @@ const getAllCategories = (req, res) => {
   categoriesModel
     .find({})
     .then((categories) => {
-      res.status(200).json({
-        success: true,
-        message: `All The Categories`,
-        categories: categories,
-      });
+      if (categories.length) {
+        res.status(200).json({
+          success: true,
+          message: `All The Categories`,
+          categories: categories,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: `No Categories Yet`,
+        });
+      }
     })
     .catch((err) => {
       res.status(500).json({
         success: false,
-        message: `No Categories Yet`,
+        message: `Server Error`,
       });
     });
 };

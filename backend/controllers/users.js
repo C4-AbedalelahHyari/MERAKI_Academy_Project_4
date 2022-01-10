@@ -1,8 +1,9 @@
 const usersModel = require("../database/models/users");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 /********************************************************** */
 const createNewUser = (req, res) => {
   const { userName, country, email, password, role } = req.body;
-
   const newUser = new usersModel({
     userName,
     country,
@@ -39,11 +40,18 @@ const getAllUsers = (req, res) => {
     .find({})
     .populate("role", "-__v -_id")
     .then((users) => {
-      res.status(200).json({
-        success: true,
-        message: `All The Users`,
-        users: users,
-      });
+      if (users.length) {
+        res.status(200).json({
+          success: true,
+          message: `All The Users`,
+          users: users,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: `No Users Yet`,
+        });
+      }
     })
     .catch((err) => {
       res.status(500).json({
@@ -53,7 +61,59 @@ const getAllUsers = (req, res) => {
     });
 };
 /*************************************** */
+const login = (req, res) => {
+  const { email, password } = req.body;
+  usersModel
+    .findOne({ email })
+    .populate("role", "-_id -__v")
+    .then(async (result) => {
+      if (!result) {
+        console.log(result);
+        return res.status(404).json({
+          success: false,
+          message: `The email doesn't exist`,
+        });
+      }
+      console.log(result);
+      try {
+        const valid = await bcrypt.compare(password, result.password);
+        console.log(valid);
+        if (!valid) {
+          return res.status(403).json({
+            success: false,
+            message: `The password you have entered is incorrect`,
+          });
+        }
+        const payload = {
+          userId: result._id,
+          userName: result.userId,
+          role: result.role,
+        };
+
+        const options = {
+          expiresIn: "60m",
+        };
+        const token = await jwt.sign(payload, process.env.SECRET, options);
+        res.status(200).json({
+          success: true,
+          message: `Valid login credentials`,
+          token: token,
+        });
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
+/********************* */
 module.exports = {
   createNewUser,
   getAllUsers,
+  login,
 };

@@ -31,20 +31,34 @@ const getAllProducts = (req, res) => {
     .find({})
     .populate("category", "-_id -__v")
     .then((products) => {
-      res.status(200).json({
-        success: true,
-        message: `All The Products`,
-        products: products,
-      });
+      if (products.length) {
+        res.status(200).json({
+          success: true,
+          message: `All The Products`,
+          products: products,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: `No Products Yet`,
+        });
+      }
     })
     .catch((err) => {
       res.status(500).json({
         success: false,
-        message: `No Products Yet`,
+        message: `Server Error`,
       });
     });
 };
-/**************************************************** */
+/**************************************************************** */
+
+// update // delete // admin
+//get gatogrey by title
+// get product by object-id (gatgrey) // filteration
+// get product by id
+// get prdouct by id // search
+
 module.exports = {
   createNewProduct,
   getAllProducts,

@@ -10,19 +10,19 @@ const PORT = 5000;
 
 // import the categoriesRouter
 const categoriesRouter = require("./routes/categories");
-app.use("/", categoriesRouter);
+app.use("/categories", categoriesRouter);
 // import the rolesRouter
 
 const rolesRouter = require("./routes/roles");
-app.use("/", rolesRouter);
+app.use("/roles", rolesRouter);
 
 // import the usersRouter
 const usersRouter = require("./routes/users");
-app.use("/", usersRouter);
+app.use("/users", usersRouter);
 
 // import the productsRouter
 const productsRouter = require("./routes/products");
-app.use("/", productsRouter);
+app.use("/products", productsRouter);
 /******************************* */
 app.listen(PORT, () => {
   console.log(`SERVER WORKING ON PORT: ${PORT}`);
