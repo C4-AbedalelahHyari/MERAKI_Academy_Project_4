@@ -6,9 +6,15 @@ const {
 } = require("../controllers/categories");
 
 const authentication = require("../middleware/authentication");
+const { authorization } = require("../middleware/authorization");
 const categoriesRouter = express.Router();
 
-categoriesRouter.post("/", authentication, createCategory);
+categoriesRouter.post(
+  "/",
+  authentication,
+  authorization("Add_Products"),
+  createCategory
+);
 
 categoriesRouter.get("/", getAllCategories);
 
