@@ -125,7 +125,6 @@ const deleteProductById = (req, res) => {
 };
 /******************************************************** */
 // update // delete // admin
-//get gatogrey by title
 // get product by object-id (gatgrey) // filteration
 
 module.exports = {
