@@ -9,5 +9,7 @@ const ordersSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  totalPrice: { type: Number, required: true },
 });
+
 module.exports = mongoose.model("Order", ordersSchema);
