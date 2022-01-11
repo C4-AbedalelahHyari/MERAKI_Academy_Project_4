@@ -27,10 +27,13 @@ const getAllOrders = (req, res) => {
 };
 /******************************************************************************** */
 const createOrder = (req, res) => {
-  const { product_id, user_id } = req.body;
+  const user_id = req.token.userId;
+  console.log(user_id);
+  const { product_id } = req.body;
   const newOrder = new ordersModel({
     product_id,
     user_id,
+    totalPrice, // think of it
   });
   newOrder
     .save()
@@ -49,4 +52,34 @@ const createOrder = (req, res) => {
     });
 };
 
-module.exports = { getAllOrders, createOrder };
+/*********************** */
+
+//getMyOrder
+// CheckOut Button
+const getMyOrders = (req, res) => {
+  let user_ID = req.token.userId;
+  ordersModel
+    .find({ user_id: user_ID })
+    .populate("product_id user_id")
+    .then((myOrders) => {
+      if (myOrders.length) {
+        res.status(200).json({
+          success: true,
+          message: `All your Orders`,
+          orders: myOrders,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: `You dont have any Orders Yet`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
+module.exports = { getAllOrders, createOrder, getMyOrders };
