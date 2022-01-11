@@ -1,19 +1,25 @@
 const express = require("express");
-const { getAllOrders, createOrder } = require("../controllers/orders");
+const {
+  getAllOrders,
+  createOrder,
+  getMyOrders,
+} = require("../controllers/orders");
 
 const ordersRouter = express.Router();
 
-/*************************************************** */
+/********************************************************** */
 const authentication = require("../middleware/authentication");
-const { authorization } = require("../middleware/authorization");
-/************************************************ */
-
+const authorization = require("../middleware/authorization");
+/*********************************************************** */
 ordersRouter.get(
   "/",
   authentication,
-  authorization("Add_Products"),
+  authorization("View_Orders"),
   getAllOrders
 );
+
+// get myOrders :logged in user
+ordersRouter.get("/myOrders", authentication, getMyOrders);
 
 ordersRouter.post("/", authentication, createOrder);
 
