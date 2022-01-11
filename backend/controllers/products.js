@@ -124,6 +124,7 @@ const deleteProductById = (req, res) => {
     });
 };
 /******************************************************** */
+// filter
 const getProductsByCategory = (req, res) => {
   // the categoryName will be an Object_id
   let categoryName = req.params.id;
@@ -144,6 +145,32 @@ const getProductsByCategory = (req, res) => {
     });
 };
 /************************************************************* */
+// Search product by name
+const getProductByName = (req, res) => {
+  let product_name = req.params.name;
+  categoriesModel
+    .find({ name: product_name })
+    .then((result) => {
+      if (result.length) {
+        res.status(200).json({
+          success: true,
+          category: result,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: `No Products found with this name: ${product_name}`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
+
 module.exports = {
   createNewProduct,
   getAllProducts,
@@ -151,4 +178,5 @@ module.exports = {
   updateProductById,
   deleteProductById,
   getProductsByCategory,
+  getProductByName,
 };
