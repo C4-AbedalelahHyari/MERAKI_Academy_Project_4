@@ -2,11 +2,10 @@ const express = require("express");
 const {
   createCategory,
   getAllCategories,
-  getCategoryByTitle,
 } = require("../controllers/categories");
 /*************************************************** */
 const authentication = require("../middleware/authentication");
-const { authorization } = require("../middleware/authorization");
+const  authorization  = require("../middleware/authorization");
 /************************************************ */
 const categoriesRouter = express.Router();
 
@@ -17,8 +16,8 @@ categoriesRouter.post(
   createCategory
 );
 
-categoriesRouter.get("/", authentication, getAllCategories);
+categoriesRouter.get("/", getAllCategories);
 
-categoriesRouter.get("/:title", authentication, getCategoryByTitle);
+//categoriesRouter.get("/:title", authentication, getCategoryByTitle); // delete
 
 module.exports = categoriesRouter;
