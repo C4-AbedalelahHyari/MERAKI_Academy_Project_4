@@ -47,33 +47,7 @@ const getAllCategories = (req, res) => {
     });
 };
 /************************************************* */
-const getCategoryByTitle = (req, res) => {
-  let category_title = req.params.title;
-  categoriesModel
-    .find({ title: category_title })
-    .then((result) => {
-      if (result.length) {
-        res.status(200).json({
-          success: true,
-          category: result,
-        });
-      } else {
-        res.status(404).json({
-          success: false,
-          message: `No Categories found with this title: ${category_title}`,
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).json({
-        success: false,
-        message: `Server Error`,
-      });
-    });
-};
-
 module.exports = {
   createCategory,
   getAllCategories,
-  getCategoryByTitle,
 };
