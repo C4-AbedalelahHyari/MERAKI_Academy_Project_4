@@ -6,16 +6,10 @@ const getAllOrders = (req, res) => {
     .populate("product_id user_id")
     .then((orders) => {
       if (orders.length) {
-        let totalPrice = 0;
-        const accessPrice = orders[0].product_id;
-        for (let i = 0; i < accessPrice.length; i++) {
-          totalPrice += accessPrice[i].price;
-        }
         res.status(200).json({
           success: true,
           message: `All The Orders`,
           orders: orders,
-          totalPrice: totalPrice,
         });
       } else {
         res.status(404).json({
@@ -25,7 +19,6 @@ const getAllOrders = (req, res) => {
       }
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({
         success: false,
         message: `Server Error`,
@@ -35,12 +28,11 @@ const getAllOrders = (req, res) => {
 /******************************************************************************** */
 const createOrder = (req, res) => {
   const user_id = req.token.userId;
-  console.log(user_id);
-  const { product_id } = req.body;
+  const { product_id, totalPrice } = req.body;
   const newOrder = new ordersModel({
     product_id,
     user_id,
-    //totalPrice, // think of it
+    totalPrice,
   });
   newOrder
     .save()
@@ -61,8 +53,7 @@ const createOrder = (req, res) => {
 };
 
 /*************************************** */
-//getMyOrder
-// CheckOut Button
+
 const getMyOrders = (req, res) => {
   let user_ID = req.token.userId;
   ordersModel
