@@ -13,6 +13,13 @@
   border: 5px solid red;
   margin: 15px;
 }
+.navbar {
+  display: flex;
+  height: 50px;
+  padding: 15px;
+  background-color: rgb(114, 223, 250);
+  justify-content: space-around;
+}
 
 .Register,
 .Login {
