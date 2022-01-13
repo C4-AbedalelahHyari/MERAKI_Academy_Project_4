@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = React.createContext();
 
 // =================================================================
 
 const LoginProvider = (props) => {
-  //const history = useNavigate();
+  const history = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState("");
 
@@ -23,8 +23,12 @@ const LoginProvider = (props) => {
   const logout = () => {
     setIsLoggedIn(false);
     localStorage.clear();
-    //history("/login");
+    history("/login");
   };
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);
 
   // =================================================================
 
