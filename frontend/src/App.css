@@ -1,28 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .App {
   display: flex;
   flex-direction: column;
 }
 .RegisterForm,
-.LoginForm {
+.LoginForm,
+.ProductForm {
   border: 5px solid red;
   margin: 15px;
+}
+.banner {
+  height: 400px;
+  width: 100%;
+  border: 5px solid red;
+}
+.image-banner {
+  width: 100%;
+  height: 100%;
 }
 .navbar {
   display: flex;
   height: 50px;
   padding: 15px;
-  background-color: rgb(114, 223, 250);
+  background-color: rgb(128, 128, 128);
   justify-content: space-around;
 }
 
 .Register,
-.Login {
+.Login,
+.Product {
   width: 25%;
   display: flex;
   padding: 20px;
@@ -30,10 +42,52 @@
   border: 5px solid red;
   flex-direction: column;
 }
+.products {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 20px 20px 20px 75px;
+}
+.product-111 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 270px;
+  height: 350px;
+  border: none;
+  border-radius: 7px;
+  background-color: rgb(248, 248, 248);
+  box-shadow: 0.5px 0.5px 5px rgb(204, 204, 204);
+}
+.image {
+  width: 200px;
+  height: 150px;
+}
+
+/* .imageCont{
+  width: 50px;
+  height: 20px;
+} */
+
+.info_products {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
 .userName,
 .country,
 .email,
-.password {
+.password,
+.productName,
+.price,
+.rating,
+.views,
+.imageSrc,
+.category {
   padding: 10px;
   border-radius: 5px;
   border: none;
@@ -41,7 +95,8 @@
   box-shadow: 1px 1px 5px 1px rgb(70, 69, 69);
 }
 .registerButton,
-.loginButton {
+.loginButton,
+.addProductButton {
   padding: 10px;
   border-radius: 5px;
   border: none;
