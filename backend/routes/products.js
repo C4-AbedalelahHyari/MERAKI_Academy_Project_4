@@ -10,15 +10,15 @@ const {
   getProductByName,
 } = require("../controllers/products");
 
-/****************************************************************** */
+/**************************************************************** */
 const authentication = require("../middleware/authentication");
-const  authorization  = require("../middleware/authorization");
-/****************************************************************** */
+const authorization = require("../middleware/authorization");
+/*************************************************************** */
 
 const productsRouter = express.Router();
 
 productsRouter.post(
-  "/",
+  "/add",
   authentication,
   authorization("Add_Products"),
   createNewProduct
