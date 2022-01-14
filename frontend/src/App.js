@@ -1,11 +1,13 @@
 import "./App.css";
-import React, { useContext } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Home from "./components/Home";
-import ModifyProduct from "./components/ModifyProduct";
+import AdminView from "./components/AdminView";
 import Navigation from "./components/Navigation";
+import Product from "./components/Product";
+import Cart from "./components/Cart";
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/products/admin" element={<ModifyProduct />} />
+        <Route path="/admin" element={<AdminView />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

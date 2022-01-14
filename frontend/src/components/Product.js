@@ -1,34 +1,34 @@
-import React, { useContext, useState } from "react";
-import { UserContext } from "../context/user";
-import jwt_decode from "jwt-decode";
-const Product = ({ name, price, rating, imageSrc, views, category, id }) => {
-  const { token } = useContext(UserContext);
-  const [isClicked, setIsClicked] = useState(false)
-  const decodedToken = token
-    ? jwt_decode(token)
-    : console.log("No Token to decoded!");
-  console.log(decodedToken);
+import React, { useContext, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
+import axios from "axios";
+const Product = () => {
+  const { id } = useParams();
+
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const result = await axios.get(`http://localhost:5000/products/${id}`);
+        setProduct(result.data.product);
+        console.log(result.data.product);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+  }, [id]);
 
   return (
-    <div className="product-111">
-      <div className="imageCont"><img src={imageSrc} className="image" /></div>
-      <div className="info_products">
-      <h1>{name}</h1>
-      <h1>{price}</h1>
-      <h1>{rating}</h1>
-      <h1>{views}</h1>
-      <h1>{category}</h1>
-      {decodedToken && decodedToken.role.role === "Admin" ? (
-        <>
-          <button onClick={} className="updateButton">Update</button>
-          <button className="deleteButton">Delete</button>
-        </>
-      ) : (
-        <></>
-      )}
+    <>
+      <div className="product-page">
+        <img src={product.imageSrc} className="image" />
+        <h1>{product.title}</h1>
+        <h1>{product.price}</h1>
+        <h1>{product.rating}</h1>
+        <h1>{product.views}</h1>
       </div>
-    </div>
+    </>
   );
 };
 
