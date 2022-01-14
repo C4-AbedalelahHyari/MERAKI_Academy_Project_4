@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "../context/user";
-import Product from "./Product";
-const ModifyProduct = () => {
+import Product from "./Products";
+const AdminView = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(0);
@@ -134,4 +134,4 @@ const ModifyProduct = () => {
   );
 };
 
-export default ModifyProduct;
+export default AdminView;
