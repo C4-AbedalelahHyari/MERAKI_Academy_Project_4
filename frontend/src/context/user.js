@@ -24,6 +24,7 @@ const LoginProvider = (props) => {
     setIsLoggedIn(false);
     localStorage.clear();
     history("/login");
+    setToken("");
   };
 
   useEffect(() => {
