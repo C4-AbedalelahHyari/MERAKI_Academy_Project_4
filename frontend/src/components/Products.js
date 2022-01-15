@@ -4,11 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 
-import {
-  FavoriteBorder,
-  SearchOutlined,
-  ShoppingCartOutlined,
-} from "@material-ui/icons";
+import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
 
 /*********************************************************** */
 const Product = () => {
@@ -58,10 +54,6 @@ const Product = () => {
                     <SearchOutlined />
                   </Link>
                 </div>
-                <div className="Icon">
-                  <FavoriteBorder />
-                </div>
-
                 {decodedToken && decodedToken.role.role === "Admin" ? (
                   <>
                     <button className="updateButton">Update</button>
