@@ -3,9 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
 /*********************************************************** */
-const Products = ({ name, setInvoke }) => {
+const Products = () => {
   const [products, setProducts] = useState([]);
-
   const navigate = useNavigate();
   /*************************************************** */
   const getAllProducts = async () => {
@@ -20,22 +19,8 @@ const Products = ({ name, setInvoke }) => {
       console.log(error);
     }
   };
-  const func = () => {
-    const search1 = products
-      ? products.find((element, index) => {
-          if (element.name == name) {
-            setTimeout(() => {
-              navigate(`/product/${element._id}`);
-            }, 3000);
-          }
-        })
-      : "Nothing To Show";
-
-    console.log(search1);
-  };
   useEffect(() => {
     getAllProducts();
-    func();
   }, [products]);
   /************************************************ */
 

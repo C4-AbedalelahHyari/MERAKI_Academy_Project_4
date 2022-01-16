@@ -10,13 +10,11 @@ import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
 
 function App() {
-  const [name, setName] = useState("");
-  const [invoke, setInvoke] = useState("");
   return (
     <div className="App">
-      <Navigation setName={setName} />
+      <Navigation />
       <Routes>
-        <Route path="/" element={<Home name={name} setInvoke={setInvoke} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminView />} />

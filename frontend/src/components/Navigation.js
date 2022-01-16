@@ -4,9 +4,38 @@ import { UserContext } from "../context/user";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge, Input } from "@material-ui/core";
 import axios from "axios";
-const Navigation = ({ setName, invoke }) => {
+const Navigation = () => {
   const { logout, token } = useContext(UserContext);
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [name, setName] = useState("");
+  /******************************************** */
+  const getAllProducts = async () => {
+    try {
+      const result = await axios.get("http://localhost:5000/products/");
+      if (result.data.success) {
+        setProducts(result.data.products);
+      } else {
+        console.log(`cannot Get`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const func = () => {
+    const search1 = products
+      ? products.find((element, index) => {
+          if (element.name == name) {
+            navigate(`/product/${element._id}`);
+          }
+        })
+      : "Nothing To Show";
+  };
+  getAllProducts();
+  // useEffect(() => {
+  //   getAllProducts();
+  //   func();
+  // }, [products]);
 
   return (
     <div className="nav-container">
@@ -29,7 +58,11 @@ const Navigation = ({ setName, invoke }) => {
                   }}
                   placeholder="Search"
                 />
-                <Search style={{ color: "black", fontSize: 30 }} />
+                <Search
+                  className="SearchIcon"
+                  onClick={func}
+                  style={{ color: "black", fontSize: 30 }}
+                />
               </div>
             </div>
             <div className="right">
@@ -58,7 +91,8 @@ const Navigation = ({ setName, invoke }) => {
                   placeholder="Search"
                 />
                 <Search
-                  onClick={invoke}
+                  className="SearchIcon"
+                  onClick={func}
                   style={{ color: "black", fontSize: 30 }}
                 />
               </div>

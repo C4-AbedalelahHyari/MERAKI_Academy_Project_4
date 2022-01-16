@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Products from "./Products";
 import banner from "../images/banner.jpg";
 
-const Home = ({ name, setInvoke }) => {
+const Home = () => {
   return (
     <>
       <div className="home">
@@ -10,7 +10,7 @@ const Home = ({ name, setInvoke }) => {
           <img className="image-banner" src={banner} />
         </div>
         <h1 className="text">Products</h1>
-        <Products name={name} setInvoke={setInvoke} />
+        <Products />
       </div>
     </>
   );
