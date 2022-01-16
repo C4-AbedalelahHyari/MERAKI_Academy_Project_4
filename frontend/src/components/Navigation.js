@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge, Input } from "@material-ui/core";
 import axios from "axios";
-import SearchProduct from "./searchProduct";
-const Navigation = ({ setSearch }) => {
+const Navigation = ({ setName, invoke }) => {
   const { logout, token } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -20,20 +19,18 @@ const Navigation = ({ setSearch }) => {
               </Link>
             </div>
             <div className="center">
-              <SearchProduct />
-              {/* <div className="searchBar">
+              <div className="searchBar">
                 <Input
                   onChange={(e) => {
-                    setSearch(e.target.value);
+                    setName(e.target.value);
                   }}
                   style={{
                     width: "80%",
                   }}
                   placeholder="Search"
                 />
-                <Search onClick={}
-                 style={{ color: "black", fontSize: 30 }} />
-              </div> */}
+                <Search style={{ color: "black", fontSize: 30 }} />
+              </div>
             </div>
             <div className="right">
               <button className="log-out" onClick={logout}>
@@ -55,10 +52,13 @@ const Navigation = ({ setSearch }) => {
                   style={{
                     width: "80%",
                   }}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
                   placeholder="Search"
                 />
                 <Search
-                  // onClick={SearchForProduct}
+                  onClick={invoke}
                   style={{ color: "black", fontSize: 30 }}
                 />
               </div>
