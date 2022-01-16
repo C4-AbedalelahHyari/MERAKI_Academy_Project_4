@@ -2,7 +2,6 @@ import React from "react";
 import { Add, Remove } from "@material-ui/icons";
 const Cart = () => {
   const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
-  console.log(productInLocalStorage);
   return (
     <div className="Cart">
       <div className="CartContainer">
@@ -16,35 +15,43 @@ const Cart = () => {
         </div>
         <div className="cartBottom">
           <div className="cartInfo">
-            <div className="productCart">
-              <div className="ProductInfo">
-                <img
-                  className="productImageCart"
-                  src={productInLocalStorage.imageSrc}
-                />
-                <div className="infos">
-                  <h4>Product Name:</h4>
-                  <h6>{productInLocalStorage.name}</h6>
-                  <h4>Product ID:</h4>
-                  <h6>{productInLocalStorage._id}</h6>
-                  <h4>views:</h4>
-                  <h6>{productInLocalStorage.views}</h6>
-                  <h4>rating:</h4>
-                  <h6>{productInLocalStorage.rating}</h6>
-                </div>
-              </div>
-              <div className="PriceInfo">
-                <div className="ProductAmountContainer">
-                  <Add />
-                  <div className="productAmount">1</div>
-                  <Remove />
-                </div>
-                <div className="productActualPrice">
-                  {productInLocalStorage.price} JOD
-                </div>
-              </div>
-            </div>
-            <div className="splitter"></div>
+            {productInLocalStorage
+              ? productInLocalStorage.map((element, index) => {
+                  return (
+                    <>
+                      <div className="productCart" key={index}>
+                        <div className="ProductInfo" key={index}>
+                          <img
+                            className="productImageCart"
+                            src={element.imageSrc}
+                          />
+                          <div className="infos">
+                            <h4>Product Name:</h4>
+                            <h6>{element.name}</h6>
+                            <h4>Product ID:</h4>
+                            <h6>{element._id}</h6>
+                            <h4>views:</h4>
+                            <h6>{element.views}</h6>
+                            <h4>rating:</h4>
+                            <h6>{element.rating}</h6>
+                          </div>
+                        </div>
+                        <div className="PriceInfo">
+                          <div className="ProductAmountContainer">
+                            <Add />
+                            <div className="productAmount">1</div>
+                            <Remove />
+                          </div>
+                          <div className="productActualPrice">
+                            {element.price} JOD
+                          </div>
+                        </div>
+                      </div>
+                      <div className="splitter"></div>
+                    </>
+                  );
+                })
+              : "Your Cart is Empty"}
           </div>
           <div className="cartDetails">
             <h3 className="summaryTitle">Order Summary</h3>

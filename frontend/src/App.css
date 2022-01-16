@@ -89,7 +89,6 @@
   flex-direction: column;
 }
 /***************************************************************************************************************/
-
 .banner {
   width: 100%;
   height: 122vh;
@@ -284,12 +283,28 @@
   cursor: pointer;
   background-color: rgba(255, 0, 0, 0.747);
 }
+.deleteButtonAdmin {
+  padding: 10px;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 5px solid rgb(0, 132, 255);
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.747);
+}
+.updateButtonAdmin {
+  padding: 10px;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 5px solid rgb(0, 132, 255);
+  cursor: pointer;
+  background-color: rgba(119, 119, 119, 0.747);
+}
 /***********************************/
 .Icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: white;
+  background-color: tomato;
   display: flex;
   margin: 10px;
   align-items: center;
