@@ -8,6 +8,7 @@ import AdminView from "./components/AdminView";
 import Navigation from "./components/Navigation";
 import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
+import searchProduct from "./components/searchProduct";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminView />} />
         <Route path="/product/:id" element={<SingleProduct />} />
+        <Route path="/product/:productName" element={<searchProduct />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
