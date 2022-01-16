@@ -28,7 +28,7 @@ const getAllOrders = (req, res) => {
 /******************************************************************************** */
 const createOrder = (req, res) => {
   const user_id = req.token.userId;
-  const { product_id, totalPrice } = req.body;
+  const { product_id, totalPrice } = req.body; // local storage  // check out Now
   const newOrder = new ordersModel({
     product_id,
     user_id,

@@ -52,6 +52,7 @@ const getAllProducts = (req, res) => {
         message: `Server Error`,
       });
     });
+  // pagination ->
 };
 /**************************************************************** */
 
@@ -149,14 +150,14 @@ const getProductsByCategory = (req, res) => {
 /************************************************************* */
 // Search product by name
 const getProductByName = (req, res) => {
-  let product_name = req.params.name;
+  let product_name = req.params.productName;
   categoriesModel
     .find({ name: product_name })
     .then((result) => {
       if (result.length) {
         res.status(200).json({
           success: true,
-          category: result,
+          productName: result,
         });
       } else {
         res.status(404).json({

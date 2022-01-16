@@ -38,6 +38,6 @@ productsRouter.delete(
   deleteProductById
 );
 productsRouter.get("/categories/:id", getProductsByCategory);
-productsRouter.get("/:name", getProductByName);
+productsRouter.get("/:productName", getProductByName);
 
 module.exports = productsRouter;

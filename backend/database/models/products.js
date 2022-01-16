@@ -11,5 +11,6 @@ const productsSchema = new mongoose.Schema({
     ref: "Category",
     required: true,
   },
+  quantity: { type: Number, default: 0 },
 });
 module.exports = mongoose.model("Product", productsSchema);
