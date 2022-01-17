@@ -220,9 +220,9 @@
   padding: 20px;
 }
 .textTopCart {
-  text-decoration: underline;
   cursor: pointer;
   margin: 0 10px;
+  font-weight: 600;
 }
 .BackToHome {
   padding: 10px;

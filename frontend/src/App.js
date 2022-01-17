@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -8,6 +8,7 @@ import AdminView from "./components/AdminView";
 import Navigation from "./components/Navigation";
 import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
+import GetMyOrder from "./components/GetMyOrder";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/admin" element={<AdminView />} />
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/myOrders" element={<GetMyOrder />} />
       </Routes>
     </div>
   );
