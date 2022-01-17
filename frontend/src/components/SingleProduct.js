@@ -80,66 +80,122 @@ const Product = () => {
           </div>
           {/* <h1>{product.category}</h1> populate the object id*/}
         </div>
+        <br />
+        <br />
+      </div>
+      <div className="splitter"></div>
+      <br />
+      <br />
+      <div className="center">
+        <h1>In this form you can update your product and delete it!</h1>
       </div>
       {decodedToken && decodedToken.role.role === "Admin" ? (
         <>
-          <button
-            onClick={async () => {
-              try {
-                const updatedProduct = {
-                  name,
-                  price,
-                  rating,
-                  views,
-                  imageSrc,
-                  category,
-                };
-                const result = await axios.put(
-                  `http://localhost:5000/products/${id}`,
-                  updatedProduct,
-                  {
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    },
+          <div className="ProductForm">
+            <h1>Update The Product</h1>
+            <div className="Product">
+              <br />
+              <input
+                className="productName"
+                type="text"
+                placeholder="Product Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+              <br />
+              <input
+                className="price"
+                placeholder="Price"
+                onChange={(e) => setPrice(e.target.value)}
+              />
+              <br />
+              <input
+                className="rating"
+                placeholder="Rating"
+                onChange={(e) => setRating(e.target.value)}
+              />
+              <br />
+              <input
+                className="views"
+                placeholder="Views"
+                onChange={(e) => setViews(e.target.value)}
+              />
+              <br />
+              <input
+                className="imageSrc"
+                placeholder="Image Source"
+                onChange={(e) => setImageSrc(e.target.value)}
+              />
+              <br />
+              <input
+                className="category"
+                placeholder="Category"
+                onChange={(e) => setCategory(e.target.value)}
+              />
+              <br />
+              <br />
+              <button
+                onClick={async () => {
+                  try {
+                    const updatedProduct = {
+                      name,
+                      price,
+                      rating,
+                      views,
+                      imageSrc,
+                      category,
+                    };
+                    const result = await axios.put(
+                      `http://localhost:5000/products/${id}`,
+                      updatedProduct,
+                      {
+                        headers: {
+                          Authorization: `Bearer ${token}`,
+                        },
+                      }
+                    );
+                  } catch (error) {
+                    console.log(error);
                   }
-                );
-              } catch (error) {
-                console.log(error);
-              }
-            }}
-            className="updateButtonAdmin"
-          >
-            Update
-          </button>
-          <button
-            onClick={async () => {
-              try {
-                const result = await axios.delete(
-                  `http://localhost:5000/products/${id}`,
+                }}
+                className="updateButtonAdmin"
+              >
+                Update
+              </button>
+              <br />
+              <br />
+              <button
+                onClick={async () => {
+                  try {
+                    const result = await axios.delete(
+                      `http://localhost:5000/products/${id}`,
 
-                  {
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    },
+                      {
+                        headers: {
+                          Authorization: `Bearer ${token}`,
+                        },
+                      }
+                    );
+                    if (result.success) {
+                      setTimeout(navigate("/"), 2000);
+                    }
+                  } catch (error) {
+                    if (error.response && error.response.data) {
+                      return setMessage(error.response.data.message);
+                    }
+                    setMessage(
+                      "Error happened while Deleting the product, please try again"
+                    );
                   }
-                );
-                if (result.success) {
-                  setTimeout(navigate("/"), 2000);
-                  //setIsClicked(true);
-                }
-              } catch (error) {
-                if (error.response && error.response.data) {
-                  return setMessage(error.response.data.message);
-                }
-                setMessage(
-                  "Error happened while Deleting the product, please try again"
-                );
-              }
-            }}
-            className="deleteButtonAdmin"
-          >
-            Delete
-          </button>
+                }}
+                className="deleteButtonAdmin"
+              >
+                Delete
+              </button>
+            </div>
+            {status
+              ? message && <div className="SuccessMessage">{message}</div>
+              : message && <div className="ErrorMessage">{message}</div>}
+          </div>
         </>
       ) : (
         <></>
