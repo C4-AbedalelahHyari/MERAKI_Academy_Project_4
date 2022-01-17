@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Add, DeleteForever, Remove } from "@material-ui/icons";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 import axios from "axios";
 /******************************************************************** */
@@ -8,14 +9,18 @@ const Cart = () => {
   const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
   console.log(productInLocalStorage);
   /******************************************************************** */
-  const product_id = productInLocalStorage.map((element, index) => {
-    return element._id;
-  });
+  const product_id = productInLocalStorage
+    ? productInLocalStorage.map((element, index) => {
+        return element._id;
+      })
+    : "";
   console.log(product_id);
   /******************************************************************** */
-  const totalPrice = productInLocalStorage.reduce((acc, element, index) => {
-    return acc + element.price;
-  }, 0);
+  const totalPrice = productInLocalStorage
+    ? productInLocalStorage.reduce((acc, element, index) => {
+        return acc + element.price;
+      }, 0)
+    : "";
   console.log(totalPrice);
   /******************************************************************** */
   const createOrder = async () => {
@@ -46,13 +51,23 @@ const Cart = () => {
       <div className="CartContainer">
         <h1 className="cartTitle">Your Cart</h1>
         <div className="cartTop">
-          <button className="BackToHome">Back To Home</button>
+          <Link to="/">
+            <button className="BackToHome">Back To Home</button>
+          </Link>
           <div className="topTexts">
             <span className="textTopCart">
-              Shopping List ({productInLocalStorage.length}) Item(s)
+              Shopping List (
+              {productInLocalStorage ? (
+                productInLocalStorage.length
+              ) : (
+                <>Item(0)</>
+              )}
+              )
             </span>
           </div>
-          <button className="checkOutButton">Check Out</button>
+          <button onClick={createOrder} className="checkOutButton">
+            Check Out
+          </button>
         </div>
         <div className="cartBottom">
           <div className="cartInfo">
@@ -103,16 +118,24 @@ const Cart = () => {
             <h3 className="summaryTitle">Order Summary</h3>
             <div className="summaryItem">
               <span className="itemText">Subtotal</span>
-              <span className="itemPrice">250 JOD</span>
+              <span className="itemPrice">{totalPrice} JOD</span>
             </div>
             <div className="summaryItem">
               <span className="itemText">Sales Tax (16%)</span>
-              <span className="itemPrice">- 40 JOD</span>
+              <span className="itemPrice">
+                {Math.round(totalPrice * 0.16)} JOD
+              </span>
             </div>
             <div className="splitter"></div>
             <div className="summaryItem">
               <h4 className="itemText">Total</h4>
-              <h4 className="itemPrice">210 JOD</h4>
+              <h4 className="itemPrice">
+                {" "}
+                {totalPrice
+                  ? totalPrice - Math.round(totalPrice * 0.16)
+                  : ""}{" "}
+                JOD
+              </h4>
             </div>
             <button onClick={createOrder} className="checkOutCart">
               Check Out Now
