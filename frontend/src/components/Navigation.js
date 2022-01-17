@@ -143,19 +143,16 @@ const Navigation = () => {
                   Register
                 </Link>
               </div>
-              <div className="right-side">
-                <Link className="nav-items" to="/login">
-                  Login
-                </Link>
-              </div>
-              <div className="right-side">
+              <Link className="nav-items" to="/login">
+                Login
+              </Link>
+              <div className="right-badge">
                 <Badge
                   badgeContent={
-                    productInLocalStorage ? productInLocalStorage.length : ""
+                    productInLocalStorage ? productInLocalStorage.length : <></>
                   }
                   color="secondary"
                 />
-
                 <Link className="nav-items" to="/cart">
                   <ShoppingCartOutlined
                     style={{ fontSize: 35, cursor: "pointer" }}

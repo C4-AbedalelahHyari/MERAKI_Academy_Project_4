@@ -36,6 +36,10 @@
   display: flex;
   gap: 10px;
 }
+.together {
+  display: flex;
+  align-items: center;
+}
 .center {
   flex: 1;
   text-align: center;
@@ -48,7 +52,13 @@
   gap: 25px;
 }
 .right-side {
-  margin-left: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.right-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .nav-items {
   font-weight: 500;
@@ -60,12 +70,6 @@
 }
 .nav-items:hover {
   color: tomato;
-}
-.together {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
 }
 
 .RegisterForm,
@@ -124,7 +128,7 @@
 }
 
 .product-container {
-  margin: 30px;
+  margin: 15px;
   min-width: 300px;
   height: 300px;
   display: flex;
@@ -136,7 +140,7 @@
 .product-container-map {
   display: grid;
   padding: 5px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 .text {
   text-align: center;
