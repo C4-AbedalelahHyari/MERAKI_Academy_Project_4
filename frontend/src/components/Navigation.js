@@ -10,6 +10,7 @@ const Navigation = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
+  const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
   /*************************************************** */
   const getAllProducts = async () => {
     try {
@@ -40,12 +41,14 @@ const Navigation = () => {
         {token ? (
           <>
             <div className="left">
-              <Link className="nav-items" to="/">
-                Home
-              </Link>
-              <Link className="nav-items" to="/myOrders">
-                My Orders
-              </Link>
+              <div className="together_2">
+                <Link className="nav-items" to="/">
+                  Home
+                </Link>
+                <Link className="nav-items" to="/myOrders">
+                  My Orders
+                </Link>
+              </div>
             </div>
             <div className="center">
               <div className="searchBar">
@@ -79,7 +82,12 @@ const Navigation = () => {
                 LogOut
               </button>
               <div className="together">
-                <Badge badgeContent={6} color="secondary" />
+                <Badge
+                  badgeContent={
+                    productInLocalStorage ? productInLocalStorage.length : ""
+                  }
+                  color="secondary"
+                />
                 <Link className="nav-items" to="/cart">
                   <ShoppingCartOutlined
                     style={{ fontSize: 35, cursor: "pointer" }}
@@ -132,7 +140,12 @@ const Navigation = () => {
                 </Link>
               </div>
               <div className="right-side">
-                <Badge badgeContent={6} color="secondary" />
+                <Badge
+                  badgeContent={
+                    productInLocalStorage ? productInLocalStorage.length : ""
+                  }
+                  color="secondary"
+                />
                 <Link className="nav-items" to="/cart">
                   <ShoppingCartOutlined
                     style={{ fontSize: 35, cursor: "pointer" }}
