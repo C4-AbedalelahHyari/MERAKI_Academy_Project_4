@@ -1,22 +1,31 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-  Add,
-  DeleteForever,
-  Remove,
-  RestoreOutlined,
-} from "@material-ui/icons";
+import { Add, DeleteForever, Remove } from "@material-ui/icons";
 import { UserContext } from "../context/user";
 import axios from "axios";
+/******************************************************************** */
 const Cart = () => {
   const { token } = useContext(UserContext);
   const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
   console.log(productInLocalStorage);
+  /******************************************************************** */
+  const product_id = productInLocalStorage.map((element, index) => {
+    return element._id;
+  });
+  console.log(product_id);
+  /******************************************************************** */
+  const totalPrice = productInLocalStorage.reduce((acc, element, index) => {
+    return acc + element.price;
+  }, 0);
+  console.log(totalPrice);
+  /******************************************************************** */
   const createOrder = async () => {
     try {
       const res = await axios.post(
         "http://localhost:5000/orders",
-        productInLocalStorage,
-
+        {
+          product_id,
+          totalPrice,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -24,14 +33,14 @@ const Cart = () => {
         }
       );
       if (res.data.success) {
-        console.log(res);
+        console.log(res.data);
       } else {
       }
     } catch (error) {
       console.log(error);
     }
   };
-
+  /******************************************************************** */
   return (
     <div className="Cart">
       <div className="CartContainer">
@@ -40,7 +49,7 @@ const Cart = () => {
           <button className="BackToHome">Back To Home</button>
           <div className="topTexts">
             <span className="textTopCart">
-              Shopping List ({productInLocalStorage.length} Items)
+              Shopping List ({productInLocalStorage.length}) Item(s)
             </span>
           </div>
           <button className="checkOutButton">Check Out</button>
@@ -75,7 +84,6 @@ const Cart = () => {
                           <DeleteForever
                             onClick={() => {
                               productInLocalStorage.splice(index, 1);
-                              console.log(productInLocalStorage);
                               localStorage.setItem(
                                 "product",
                                 JSON.stringify(productInLocalStorage)
