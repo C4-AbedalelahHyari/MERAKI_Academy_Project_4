@@ -155,21 +155,29 @@
   flex: 1;
 }
 .infoContainer {
-  flex: 1;
+  flex: 3;
   padding: 0px 50px;
 }
 
 .singleProductImage {
   width: 100%;
   height: 90%;
-  object-fit: cover;
+  object-fit: contain;
+}
+p {
+  line-height: 3em;
+  font-weight: 600;
+}
+.rating-star {
+  display: flex;
+  align-items: center;
 }
 .singleProductName {
   font-weight: 200;
 }
 .singleProductPrice {
   font-weight: 100;
-  font-size: 50px;
+  font-size: 40px;
 }
 .addToCart {
   display: flex;

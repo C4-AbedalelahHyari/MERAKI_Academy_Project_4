@@ -3,7 +3,7 @@ import { UserContext } from "../context/user";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import { Add, Remove } from "@material-ui/icons";
+import { Add, Remove, Star } from "@material-ui/icons";
 let arr = [];
 
 const Product = () => {
@@ -64,10 +64,15 @@ const Product = () => {
           <img src={product.imageSrc} className="singleProductImage" />
         </div>
         <div className="infoContainer">
-          <h1 className="singleProductName">{product.name}</h1>
+          <h4 className="singleProductName">{product.name}</h4>
           <span className="singleProductPrice">{product.price} JOD</span>
-          <h1>{product.rating}</h1>
-          <h1>{product.views}</h1>
+          <div className="rating-star">
+            <h3>
+              {product.rating}
+              <Star style={{ color: "tomato", fontSize: 40 }} />
+            </h3>
+          </div>
+          <p>{product.description}</p>
           <div className="addToCart">
             <div className="amountContainer">
               <Remove className="spanSingleProduct" onClick={decreaseCounter} />
@@ -78,19 +83,18 @@ const Product = () => {
               Add To Cart
             </button>
           </div>
-          {/* <h1>{product.category}</h1> populate the object id*/}
         </div>
         <br />
         <br />
       </div>
-      <div className="splitter"></div>
-      <br />
-      <br />
-      <div className="center">
-        <h1>In this form you can update your product and delete it!</h1>
-      </div>
       {decodedToken && decodedToken.role.role === "Admin" ? (
         <>
+          <div className="splitter"></div>
+          <br />
+          <br />
+          <div className="center">
+            <h1>In this form you can update your product and delete it!</h1>
+          </div>
           <div className="ProductForm">
             <h1>Update The Product</h1>
             <div className="Product">
