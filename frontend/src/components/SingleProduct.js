@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/user";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { Add, Remove, Star } from "@material-ui/icons";
+//************************************************************** */
 let arr = [];
-
+/************************************************** */
 const Product = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,21 +26,20 @@ const Product = () => {
   const [imageSrc, setImageSrc] = useState("");
   const [category, setCategory] = useState("");
   /************************************************* */
-  const decodedToken = token
-    ? jwt_decode(token)
-    : console.log("No Token to decoded!");
+  const decodedToken = token ? jwt_decode(token) : "";
   /************************************************** */
+  const getProduct = async () => {
+    try {
+      const result = await axios.get(`http://localhost:5000/products/${id}`);
+      setProduct(result.data.product);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  /************************* */
   useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const result = await axios.get(`http://localhost:5000/products/${id}`);
-        setProduct(result.data.product);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getProduct();
-  }, [id]);
+  }, []);
   /******************************************************* */
   const decreaseCounter = () => {
     if (counter !== 1) {
@@ -64,7 +64,7 @@ const Product = () => {
           <img src={product.imageSrc} className="singleProductImage" />
         </div>
         <div className="infoContainer">
-          <h4 className="singleProductName">{product.name}</h4>
+          <h2 className="singleProductName">{product.name}</h2>
           <span className="singleProductPrice">{product.price} JOD</span>
           <div className="rating-star">
             <h3>

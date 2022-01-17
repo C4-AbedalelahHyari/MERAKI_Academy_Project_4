@@ -132,7 +132,7 @@ const Cart = () => {
               <h4 className="itemPrice">
                 {" "}
                 {totalPrice
-                  ? totalPrice - Math.round(totalPrice * 0.16)
+                  ?Math.round(totalPrice - Math.round(totalPrice * 0.16))
                   : ""}{" "}
                 JOD
               </h4>

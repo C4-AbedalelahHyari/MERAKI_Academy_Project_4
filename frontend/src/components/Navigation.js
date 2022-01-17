@@ -11,7 +11,7 @@ const Navigation = () => {
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
-  /*************************************************** */
+  /************************************************************************** */
   const getAllProducts = async () => {
     try {
       const result = await axios.get("http://localhost:5000/products/");
@@ -24,7 +24,7 @@ const Navigation = () => {
       console.log(error);
     }
   };
-  getAllProducts();
+  /************************************************************************** */
   const func = () => {
     const result = products
       ? products.find((element, index) => {
@@ -34,7 +34,7 @@ const Navigation = () => {
         })
       : "Nothing To Show";
   };
-
+  /************************************************************************** */
   return (
     <div className="nav-container">
       <nav className="navbar">
@@ -46,7 +46,7 @@ const Navigation = () => {
                   Home
                 </Link>
                 <Link className="nav-items" to="/myOrders">
-                  My Orders
+                  My Order
                 </Link>
               </div>
             </div>
@@ -70,11 +70,10 @@ const Navigation = () => {
             </div>
             <div className="right">
               <div className="together">
-                <Security
-                  className="nav-items"
-                  style={{ color: "white", cursor: "pointer", fontSize: 35 }}
-                />
                 <Link className="nav-items" to="/admin">
+                  <Security
+                    style={{ color: "white", cursor: "pointer", fontSize: 35 }}
+                  />
                   Admin Panel
                 </Link>
               </div>
@@ -104,7 +103,7 @@ const Navigation = () => {
                   Home
                 </Link>
                 <Link className="nav-items" to="/myOrders">
-                  My Orders
+                  My Order
                 </Link>
               </div>
             </div>
@@ -146,6 +145,7 @@ const Navigation = () => {
                   }
                   color="secondary"
                 />
+
                 <Link className="nav-items" to="/cart">
                   <ShoppingCartOutlined
                     style={{ fontSize: 35, cursor: "pointer" }}

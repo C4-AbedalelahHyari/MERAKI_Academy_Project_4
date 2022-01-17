@@ -13,26 +13,22 @@
 
 .nav-container {
   height: 60px;
+  width: 100%;
 }
 .navbar {
   display: flex;
   padding: 10px 20px;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
   background-color: rgb(0, 132, 255);
+  border-bottom: 2px solid #000000;
 }
 .searchBar {
-  border: 1px double tomato;
   display: flex;
-  border-radius: 10px;
   align-items: center;
   margin-left: 25px;
   padding: 5px;
 }
 
-.nav-items:hover {
-  color: tomato;
-}
 .left {
   flex: 1;
 }
@@ -50,7 +46,6 @@
   align-items: center;
   justify-content: flex-end;
   gap: 25px;
-  border-radius: 5px;
 }
 .right-side {
   margin-left: 30px;
@@ -58,10 +53,13 @@
 .nav-items {
   font-weight: 500;
   color: #edf0f1;
-  font-size: 25px;
+  font-size: 20px;
   text-decoration: none;
   background-color: rgb(0, 132, 255);
   transition: all 0.3s ease 0s;
+}
+.nav-items:hover {
+  color: tomato;
 }
 .together {
   display: flex;
@@ -81,15 +79,14 @@
   margin: 15px;
 }
 .log-out {
-  border-radius: 10px;
-  background-color: rgb(253, 75, 44);
-  box-shadow: 1px 1px 15px rgb(0, 0, 0);
+  border-radius: 5px;
+  background-color: tomato;
   font-weight: 500;
   color: #edf0f1;
-  font-size: 20px;
+  font-size: 17px;
   transition: all 0.3s ease 0s;
   cursor: pointer;
-  padding: 9px 25px;
+  padding: 6px 12px;
   border: none;
 }
 
@@ -132,20 +129,20 @@
   height: 300px;
   display: flex;
   border-radius: 20px;
+  box-shadow: 1px 1px 5px 5px rgb(255, 90, 71, 0.5);
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 132, 255, 0.7);
 }
 .product-container-map {
-  display: flex;
-  padding: 15px;
-  flex-wrap: wrap;
+  display: grid;
+  padding: 5px;
+  grid-template-columns: repeat(3, 1fr);
 }
 .text {
   text-align: center;
 }
 .image {
-  height: 70%;
+  height: 65%;
 }
 .productWarper {
   padding: 50px;
@@ -165,8 +162,9 @@
   object-fit: contain;
 }
 p {
-  line-height: 3em;
-  font-weight: 600;
+  line-height: 2em;
+  font-size: 20px;
+  font-weight: 500;
 }
 .rating-star {
   display: flex;
@@ -177,7 +175,8 @@ p {
 }
 .singleProductPrice {
   font-weight: 100;
-  font-size: 40px;
+  font-size: 30px;
+  font-weight: 700;
 }
 .addToCart {
   display: flex;

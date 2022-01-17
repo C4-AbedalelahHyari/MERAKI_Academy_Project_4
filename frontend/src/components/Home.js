@@ -9,7 +9,7 @@ const Home = () => {
         <div className="banner">
           <img className="image-banner" src={banner} />
         </div>
-        <h1 className="text">Products</h1>
+        <h1 className="text">Featured Products</h1>
         <Products />
       </div>
     </>
