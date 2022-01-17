@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 import { Search, Security, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge, Input } from "@material-ui/core";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 /******************************************************************* */
 const Navigation = () => {
@@ -11,6 +12,7 @@ const Navigation = () => {
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
+  const decodedToken = token ? jwt_decode(token) : "";
   /************************************************************************** */
   const getAllProducts = async () => {
     try {
@@ -69,14 +71,22 @@ const Navigation = () => {
               </div>
             </div>
             <div className="right">
-              <div className="together">
-                <Link className="nav-items" to="/admin">
-                  <Security
-                    style={{ color: "white", cursor: "pointer", fontSize: 35 }}
-                  />
-                  Admin Panel
-                </Link>
-              </div>
+              {decodedToken && decodedToken.role.role === "Admin" ? (
+                <div className="together">
+                  <Link className="nav-items" to="/admin">
+                    <Security
+                      style={{
+                        color: "white",
+                        cursor: "pointer",
+                        fontSize: 35,
+                      }}
+                    />
+                    Admin Panel
+                  </Link>
+                </div>
+              ) : (
+                <></>
+              )}
               <button className="log-out" onClick={logout}>
                 LogOut
               </button>

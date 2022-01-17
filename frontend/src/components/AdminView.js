@@ -15,7 +15,6 @@ const AdminView = () => {
   const [status, setStatus] = useState(false);
   const [newCategory, setNewCategory] = useState("");
   /******************************************** */
-  const [products, setProducts] = useState([]);
   const AddNewCategory = async () => {
     try {
       const result = await axios.post(
@@ -30,14 +29,10 @@ const AdminView = () => {
         }
       );
       if (result.data.success) {
-        setMessage("The Category has been created successfully");
+        console.log(`The Category has been created successfully`);
       } else throw Error;
     } catch (error) {
-      console.log(error);
-      if (error.response && error.response.data) {
-        return setMessage(error.response.data.message);
-      }
-      setMessage("Error happened while Adding The Category, please try again");
+      console.log(error.response);
     }
   };
   /************************************************* */
