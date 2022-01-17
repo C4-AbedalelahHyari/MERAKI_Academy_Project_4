@@ -13,23 +13,34 @@ const AdminView = () => {
   /******************************************** */
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
+  const [newCategory, setNewCategory] = useState("");
   /******************************************** */
   const [products, setProducts] = useState([]);
-  const getAllProducts = async () => {
+  const AddNewCategory = async () => {
     try {
-      const result = await axios.get("http://localhost:5000/products/");
+      const result = await axios.post(
+        "http://localhost:5000/categories",
+        {
+          newCategory,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (result.data.success) {
-        setProducts(result.data.products);
-      } else {
-        console.log(`cannot Get`);
-      }
+        setMessage("The Category has been created successfully");
+      } else throw Error;
     } catch (error) {
       console.log(error);
+      if (error.response && error.response.data) {
+        return setMessage(error.response.data.message);
+      }
+      setMessage("Error happened while Adding The Category, please try again");
     }
   };
-  useEffect(() => {
-    getAllProducts();
-  }, []);
+  /************************************************* */
   const addNewProduct = async () => {
     try {
       const product = {
@@ -61,9 +72,9 @@ const AdminView = () => {
   };
 
   return (
-    <>
+    <div className="flexAdmin">
       <div className="ProductForm">
-        <h1>Add Product</h1>
+        <h1>Add New Product</h1>
         <div className="Product">
           <br />
           <input
@@ -113,24 +124,21 @@ const AdminView = () => {
           ? message && <div className="SuccessMessage">{message}</div>
           : message && <div className="ErrorMessage">{message}</div>}
       </div>
-      <div className="allProducts">
-        <div className="products">
-          {products.map((element, index) => {
-            return (
-              <div key={index} className="data">
-                <Product
-                  imageSrc={element.imageSrc}
-                  name={element.name}
-                  price={element.price}
-                  rating={element.rating}
-                  views={element.views}
-                />
-              </div>
-            );
-          })}
+      <div className="CategoryForm">
+        <h1>Add New Category</h1>
+        <div className="Category">
+          <input
+            className="category"
+            placeholder="Add New Category"
+            onChange={(e) => setNewCategory(e.target.value)}
+          />
+          <br />
+          <button className="addProductButton" onClick={AddNewCategory}>
+            Add New Category
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
