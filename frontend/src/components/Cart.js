@@ -1,7 +1,37 @@
-import React from "react";
-import { Add, Remove } from "@material-ui/icons";
+import React, { useState, useContext, useEffect } from "react";
+import {
+  Add,
+  DeleteForever,
+  Remove,
+  RestoreOutlined,
+} from "@material-ui/icons";
+import { UserContext } from "../context/user";
+import axios from "axios";
 const Cart = () => {
+  const { token } = useContext(UserContext);
   const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
+  console.log(productInLocalStorage);
+  const createOrder = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/orders",
+        productInLocalStorage,
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        console.log(res);
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="Cart">
       <div className="CartContainer">
@@ -9,7 +39,9 @@ const Cart = () => {
         <div className="cartTop">
           <button className="BackToHome">Back To Home</button>
           <div className="topTexts">
-            <span className="textTopCart">Shopping List (1)</span>
+            <span className="textTopCart">
+              Shopping List ({productInLocalStorage.length} Items)
+            </span>
           </div>
           <button className="checkOutButton">Check Out</button>
         </div>
@@ -28,12 +60,6 @@ const Cart = () => {
                           <div className="infos">
                             <h4>Product Name:</h4>
                             <h6>{element.name}</h6>
-                            <h4>Product ID:</h4>
-                            <h6>{element._id}</h6>
-                            <h4>views:</h4>
-                            <h6>{element.views}</h6>
-                            <h4>rating:</h4>
-                            <h6>{element.rating}</h6>
                           </div>
                         </div>
                         <div className="PriceInfo">
@@ -45,6 +71,18 @@ const Cart = () => {
                           <div className="productActualPrice">
                             {element.price} JOD
                           </div>
+                          <br />
+                          <DeleteForever
+                            onClick={() => {
+                              productInLocalStorage.splice(index, 1);
+                              console.log(productInLocalStorage);
+                              localStorage.setItem(
+                                "product",
+                                JSON.stringify(productInLocalStorage)
+                              );
+                            }}
+                            style={{ fontSize: 40, cursor: "pointer" }}
+                          />
                         </div>
                       </div>
                       <div className="splitter"></div>
@@ -68,7 +106,9 @@ const Cart = () => {
               <h4 className="itemText">Total</h4>
               <h4 className="itemPrice">210 JOD</h4>
             </div>
-            <button className="checkOutCart">Check Out Now</button>
+            <button onClick={createOrder} className="checkOutCart">
+              Check Out Now
+            </button>
           </div>
         </div>
       </div>
