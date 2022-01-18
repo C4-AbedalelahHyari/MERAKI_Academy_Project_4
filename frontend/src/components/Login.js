@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
+import GoogleLogin, { GoogleLogout } from "react-google-login";
 const Login = () => {
   const { setIsLoggedIn, isLoggedIn, saveToken } = useContext(UserContext);
   const [email, setEmail] = useState("");
@@ -28,11 +29,19 @@ const Login = () => {
       setMessage("Error happened while Login, please try again");
     }
   };
+  /**************************************** */
   useEffect(() => {
     if (isLoggedIn) {
       navigator("/");
     }
   });
+  /*************************************** */
+  const responseGoogle = (response) => {
+    const googleToken = response.tokenObj.id_token;
+    saveToken(googleToken);
+    setIsLoggedIn(true);
+  };
+
   return (
     <div className="LoginForm">
       <h1>Login Form</h1>
@@ -55,6 +64,13 @@ const Login = () => {
           Login
         </button>
         <br />
+        <GoogleLogin
+          clientId="171142303177-dlklu0me533t11g37ll28pjmd603vh8c.apps.googleusercontent.com"
+          buttonText="Sign with Google"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
       </div>
       {status
         ? message && <div className="SuccessMessage">{message}</div>
