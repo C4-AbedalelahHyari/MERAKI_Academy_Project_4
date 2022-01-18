@@ -44,7 +44,9 @@ const Login = () => {
 
   return (
     <div className="LoginForm">
-      <h1>Login Form</h1>
+      <h1 className="center" style={{ "margin-top": "25px" }}>
+        Login Form
+      </h1>
       <div className="Login">
         <input
           className="email"
@@ -64,6 +66,7 @@ const Login = () => {
           Login
         </button>
         <br />
+
         <GoogleLogin
           clientId="171142303177-dlklu0me533t11g37ll28pjmd603vh8c.apps.googleusercontent.com"
           buttonText="Sign with Google"
@@ -72,9 +75,12 @@ const Login = () => {
           cookiePolicy={"single_host_origin"}
         />
       </div>
-      {status
-        ? message && <div className="SuccessMessage">{message}</div>
-        : message && <div className="ErrorMessage">{message}</div>}
+
+      <div className="center">
+        {status
+          ? message && <div className="SuccessMessage">{message}</div>
+          : message && <div className="ErrorMessage">{message}</div>}
+      </div>
     </div>
   );
 };

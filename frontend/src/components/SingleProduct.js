@@ -10,6 +10,17 @@ let arr = [];
 const Product = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  /***************************************** */
+  // const [image, setImage] = useState("");
+  // const upload = () => {
+  //   if (image == null) return;
+  //   storage
+  //     .ref(`/images/${image.name}`)
+  //     .put(image)
+  //     .on("state_changed", alert("success"), alert);
+  //   console.log(storage);
+  // };
+
   /******************************************* */
   const [product, setProduct] = useState({});
   const [counter, setCounter] = useState(1);
@@ -126,6 +137,15 @@ const Product = () => {
                 onChange={(e) => setViews(e.target.value)}
               />
               <br />
+              {/* <input
+                className="imageSrc"
+                placeholder="Image"
+                type="file"
+                onChange={(e) => {
+                  setImage(e.target.files[0]);
+                }}
+              />
+              <button onClick={upload}>Upload</button> */}
               <input
                 className="imageSrc"
                 placeholder="Image Source"

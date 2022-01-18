@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
 import GetMyOrder from "./components/GetMyOrder";
+import axios from "axios";
 
 function App() {
   return (

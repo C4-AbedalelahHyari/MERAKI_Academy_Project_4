@@ -1,11 +1,3 @@
-import firebase from "firebase";
-const firebaseConfig = {
-  // Your Credentials
-};
-firebase.initializeApp(firebaseConfig);
-var storage = firebase.storage();
-export default storage;
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";

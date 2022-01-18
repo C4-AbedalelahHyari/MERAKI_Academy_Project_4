@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 import { Search, Security, ShoppingCartOutlined } from "@material-ui/icons";
@@ -36,6 +36,9 @@ const Navigation = () => {
         })
       : "Nothing To Show";
   };
+  useEffect(() => {
+    getAllProducts();
+  }, []);
   /************************************************************************** */
   return (
     <div className="nav-container">

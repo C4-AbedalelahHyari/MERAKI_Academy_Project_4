@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Add, DeleteForever, Remove } from "@material-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
@@ -7,21 +7,20 @@ import axios from "axios";
 const Cart = () => {
   const { token } = useContext(UserContext);
   const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
-  console.log(productInLocalStorage);
   /******************************************************************** */
   const product_id = productInLocalStorage
     ? productInLocalStorage.map((element, index) => {
         return element._id;
       })
     : "";
-  console.log(product_id);
   /******************************************************************** */
   const totalPrice = productInLocalStorage
     ? productInLocalStorage.reduce((acc, element, index) => {
         return acc + element.price;
       }, 0)
     : "";
-  console.log(totalPrice);
+  /******************************************************************** */
+  useEffect(() => {}, [productInLocalStorage]);
   /******************************************************************** */
   const createOrder = async () => {
     try {

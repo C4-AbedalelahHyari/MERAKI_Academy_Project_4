@@ -35,7 +35,9 @@ const Register = () => {
   return (
     <>
       <div className="RegisterForm">
-        <h1>Register Form</h1>
+        <h1 className="center" style={{ "margin-top": "25px" }}>
+          Register Form
+        </h1>
         <div className="Register">
           <br />
           <input
@@ -70,10 +72,13 @@ const Register = () => {
           <button className="registerButton" onClick={addNewUser}>
             Register
           </button>
+          <br />
+          <div className="center">
+            {status
+              ? message && <div className="SuccessMessage">{message}</div>
+              : message && <div className="ErrorMessage">{message}</div>}
+          </div>
         </div>
-        {status
-          ? message && <div className="SuccessMessage">{message}</div>
-          : message && <div className="ErrorMessage">{message}</div>}
       </div>
     </>
   );
