@@ -18,7 +18,7 @@ const Products = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
   useEffect(() => {
     getAllProducts();
   }, [products]);
