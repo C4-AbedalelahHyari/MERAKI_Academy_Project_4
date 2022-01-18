@@ -71,7 +71,9 @@ const Navigation = () => {
               </div>
             </div>
             <div className="right">
-              {decodedToken && decodedToken.role.role === "Admin" ? (
+              {decodedToken &&
+              decodedToken.role &&
+              decodedToken.role.role === "Admin" ? (
                 <div className="together">
                   <Link className="nav-items" to="/admin">
                     <Security
@@ -93,7 +95,7 @@ const Navigation = () => {
               <div className="together">
                 <Badge
                   badgeContent={
-                    productInLocalStorage ? productInLocalStorage.length : ""
+                    productInLocalStorage ? productInLocalStorage.length : "0"
                   }
                   color="secondary"
                 />
@@ -149,7 +151,7 @@ const Navigation = () => {
               <div className="right-badge">
                 <Badge
                   badgeContent={
-                    productInLocalStorage ? productInLocalStorage.length : <></>
+                    productInLocalStorage ? productInLocalStorage.length : "0"
                   }
                   color="secondary"
                 />

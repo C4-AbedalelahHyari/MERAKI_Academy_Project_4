@@ -87,7 +87,9 @@ const Product = () => {
         <br />
         <br />
       </div>
-      {decodedToken && decodedToken.role.role === "Admin" ? (
+      {decodedToken &&
+      decodedToken.role &&
+      decodedToken.role.role === "Admin" ? (
         <>
           <div className="splitter"></div>
           <br />

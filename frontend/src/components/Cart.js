@@ -39,6 +39,7 @@ const Cart = () => {
       );
       if (res.data.success) {
         console.log(res.data);
+        localStorage.removeItem("product");
       } else {
       }
     } catch (error) {
@@ -82,8 +83,7 @@ const Cart = () => {
                             src={element.imageSrc}
                           />
                           <div className="infos">
-                            <h4>Product Name:</h4>
-                            <h6>{element.name}</h6>
+                            <h3>{element.name}</h3>
                           </div>
                         </div>
                         <div className="PriceInfo">
@@ -132,7 +132,7 @@ const Cart = () => {
               <h4 className="itemPrice">
                 {" "}
                 {totalPrice
-                  ?Math.round(totalPrice - Math.round(totalPrice * 0.16))
+                  ? Math.round(totalPrice - Math.round(totalPrice * 0.16))
                   : ""}{" "}
                 JOD
               </h4>
