@@ -3,6 +3,7 @@ import axios from "axios";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import Footer from "./Footer";
 const Login = () => {
   const { setIsLoggedIn, isLoggedIn, saveToken } = useContext(UserContext);
   const [email, setEmail] = useState("");
@@ -81,6 +82,7 @@ const Login = () => {
           ? message && <div className="SuccessMessage">{message}</div>
           : message && <div className="ErrorMessage">{message}</div>}
       </div>
+      <Footer />
     </div>
   );
 };

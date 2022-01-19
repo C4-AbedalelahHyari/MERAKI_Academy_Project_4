@@ -1,7 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../context/user";
 import Product from "./Products";
+import Footer from "./Footer";
 const AdminView = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -133,6 +134,7 @@ const AdminView = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -27,7 +27,7 @@ const Products = () => {
   return (
     <>
       <div className="product-container-map">
-        {products.map((element, index) => {
+        {products.slice(0, 6).map((element, index) => {
           return (
             <div className="product-container" key={index}>
               <img src={element.imageSrc} className="image" />

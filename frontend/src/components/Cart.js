@@ -3,6 +3,7 @@ import { Add, DeleteForever, Remove } from "@material-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 import axios from "axios";
+import Footer from "./Footer";
 /******************************************************************** */
 const Cart = () => {
   const { token } = useContext(UserContext);
@@ -142,6 +143,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

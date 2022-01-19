@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/user";
+import Footer from "./Footer";
 const GetMyOrder = () => {
   const [myOrder, setMyOrder] = useState([]);
   const { token } = useContext(UserContext);
@@ -56,6 +57,7 @@ const GetMyOrder = () => {
             : "Your dont have any order yet"}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import Footer from "./Footer";
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [country, setCountry] = useState("");
@@ -79,6 +79,7 @@ const Register = () => {
               : message && <div className="ErrorMessage">{message}</div>}
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

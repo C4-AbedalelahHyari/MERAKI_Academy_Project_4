@@ -45,6 +45,7 @@ const Navigation = () => {
       <nav className="navbar">
         {token ? (
           <>
+            {/******************************************************************** */}
             <div className="left">
               <div className="together_2">
                 <Link className="nav-items" to="/">
@@ -55,6 +56,7 @@ const Navigation = () => {
                 </Link>
               </div>
             </div>
+            {/******************************************************************** */}
             <div className="center">
               <div className="searchBar">
                 <Input
@@ -73,25 +75,25 @@ const Navigation = () => {
                 />
               </div>
             </div>
+            {/******************************************************************** */}
             <div className="right">
               {decodedToken &&
               decodedToken.role &&
               decodedToken.role.role === "Admin" ? (
-                <div className="together">
-                  <Link className="nav-items" to="/admin">
-                    <Security
-                      style={{
-                        color: "white",
-                        cursor: "pointer",
-                        fontSize: 35,
-                      }}
-                    />
-                    Admin Panel
-                  </Link>
-                </div>
+                <Link className="nav-items" to="/admin">
+                  <Security
+                    style={{
+                      color: "white",
+                      cursor: "pointer",
+                      fontSize: 20,
+                    }}
+                  />
+                  Admin Panel
+                </Link>
               ) : (
                 <></>
               )}
+              {/******************************************************************** */}
               <button className="log-out" onClick={logout}>
                 LogOut
               </button>
@@ -109,9 +111,11 @@ const Navigation = () => {
                 </Link>
               </div>
             </div>
+            {/******************************************************************** */}
           </>
         ) : (
           <>
+            {/******************************************************************** */}
             <div className="left">
               <div className="together_2">
                 <Link className="nav-items" to="/">
@@ -122,7 +126,7 @@ const Navigation = () => {
                 </Link>
               </div>
             </div>
-
+            {/******************************************************************** */}
             <div className="center">
               <div className="searchBar">
                 <Input
@@ -141,7 +145,7 @@ const Navigation = () => {
                 />
               </div>
             </div>
-
+            {/******************************************************************** */}
             <div className="right">
               <div className="right-side">
                 <Link className="nav-items" to="/register">
