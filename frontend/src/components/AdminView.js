@@ -8,7 +8,7 @@ const AdminView = () => {
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(0);
   const [views, setViews] = useState(0);
-  const [imageSrc, setImageSrc] = useState("");
+  const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   const { token } = useContext(UserContext);
   /******************************************** */
@@ -38,13 +38,25 @@ const AdminView = () => {
   };
   /************************************************* */
   const addNewProduct = async () => {
+    // const upload = () => {
+    //   if (image == null) return;
+    //   storage
+    //     .ref(`/images/${image.name}`)
+    //     .put(image)
+    //     .on("state_changed", alert("success"), alert);
+    //   console.log(storage);
+
+    // download
+    //  storage.ref("/images").child(image.name).getDownloadURL().then((result)=>{setUrl(result)})
+
+    // };
     try {
       const product = {
         name,
         price,
         rating,
         views,
-        imageSrc,
+        image,
         category,
       };
       const result = await axios.post(
@@ -101,8 +113,12 @@ const AdminView = () => {
           <input
             className="imageSrc"
             placeholder="Image Source"
-            onChange={(e) => setImageSrc(e.target.value)}
+            type="file"
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+            }}
           />
+
           <br />
           <input
             className="category"

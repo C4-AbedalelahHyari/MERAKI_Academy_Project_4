@@ -11,23 +11,11 @@ let arr = [];
 const Product = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  /***************************************** */
-  // const [image, setImage] = useState("");
-  // const upload = () => {
-  //   if (image == null) return;
-  //   storage
-  //     .ref(`/images/${image.name}`)
-  //     .put(image)
-  //     .on("state_changed", alert("success"), alert);
-  //   console.log(storage);
-  // };
-
   /******************************************* */
   const [product, setProduct] = useState({});
   const [counter, setCounter] = useState(1);
   /******************************************* */
-  const { token } = useContext(UserContext);
-  const [isClicked, setIsClicked] = useState(false);
+  const { token, cart, setCart } = useContext(UserContext);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   /******************************************* */
@@ -63,11 +51,12 @@ const Product = () => {
   };
   /******************************************************* */
   const addToCart = () => {
-    const previousData = JSON.parse(localStorage.getItem("product")) || [];
-    console.log(previousData);
+    const previousData = cart;
     arr = [...previousData, product];
+    setCart(arr);
     localStorage.setItem("product", JSON.stringify(arr));
   };
+
   /********************************************* */
   return (
     <div className="product-page">
@@ -138,21 +127,14 @@ const Product = () => {
                 onChange={(e) => setViews(e.target.value)}
               />
               <br />
-              {/* <input
-                className="imageSrc"
-                placeholder="Image"
-                type="file"
-                onChange={(e) => {
-                  setImage(e.target.files[0]);
-                }}
-              />
-              <button onClick={upload}>Upload</button> */}
               <input
                 className="imageSrc"
-                placeholder="Image Source"
-                onChange={(e) => setImageSrc(e.target.value)}
+                placeholder="ImageSrc"
+                onChange={(e) => {
+                  setImageSrc(e.target.value);
+                }}
               />
-              <br />
+
               <input
                 className="category"
                 placeholder="Category"
@@ -203,7 +185,7 @@ const Product = () => {
                       }
                     );
                     if (result.success) {
-                      setTimeout(navigate("/"), 2000);
+                      return true;
                     }
                   } catch (error) {
                     if (error.response && error.response.data) {

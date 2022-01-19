@@ -39,6 +39,7 @@ const Login = () => {
   /*************************************** */
   const responseGoogle = (response) => {
     const googleToken = response.tokenObj.id_token;
+    console.log(response);
     saveToken(googleToken);
     setIsLoggedIn(true);
   };

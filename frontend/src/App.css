@@ -128,6 +128,13 @@
   margin: 10px;
   flex-direction: column;
 }
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px;
+  gap: 20px;
+}
 /***************************************************************************************************************/
 .banner {
   width: 100%;
@@ -273,6 +280,15 @@ p {
   cursor: pointer;
   background-color: tomato;
 }
+.pagButton {
+  padding: 10px;
+  font-weight: 600;
+  padding: 15px;
+  border-radius: 8px;
+  border: 4px solid rgb(0, 132, 255);
+  cursor: pointer;
+  background-color: tomato;
+}
 .cartBottom {
   display: flex;
   justify-content: space-between;
@@ -400,4 +416,7 @@ p {
   outline: none;
   box-shadow: 1px 1px 5px 1px rgb(70, 69, 69);
   background-color: royalblue;
+}
+button {
+  cursor: pointer;
 }

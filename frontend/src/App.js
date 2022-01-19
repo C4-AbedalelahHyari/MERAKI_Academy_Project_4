@@ -9,7 +9,8 @@ import Navigation from "./components/Navigation";
 import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
 import GetMyOrder from "./components/GetMyOrder";
-import axios from "axios";
+import Products from "./components/Products";
+import AllProducts from "./components/AllProducts";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/myOrders" element={<GetMyOrder />} />
+        <Route path="/products/All" element={<AllProducts />} />
       </Routes>
     </div>
   );

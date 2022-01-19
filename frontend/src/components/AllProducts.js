@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
+import Footer from "./Footer";
 /*********************************************************** */
 let arr = [];
-/************************************************ */
-const Products = () => {
+const AllProducts = () => {
   const [products, setProducts] = useState([]);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(5);
   const [skip, setSkip] = useState(0);
+  const navigate = useNavigate();
   /*************************************************** */
   const getAllProducts = async (limit, skip) => {
     try {
@@ -24,11 +25,10 @@ const Products = () => {
       console.log(error);
     }
   };
-  /*************************************** */
   useEffect(() => {
     getAllProducts(limit, skip);
   }, [skip, limit]);
-  /************************************ */
+  /***************************** */
 
   const nextPage = () => {
     setSkip(skip + limit);
@@ -66,8 +66,17 @@ const Products = () => {
           );
         })}
       </div>
+      <div className="pagination">
+        <button className="pagButton" onClick={nextPage}>
+          Previous Page
+        </button>
+        <button className="pagButton" onClick={previousPage}>
+          Next Page
+        </button>
+      </div>
+      <Footer />
     </>
   );
 };
 
-export default Products;
+export default AllProducts;

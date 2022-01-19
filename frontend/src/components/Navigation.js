@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 /******************************************************************* */
 const Navigation = () => {
-  const { logout, token } = useContext(UserContext);
+  const { logout, token, cart } = useContext(UserContext);
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
@@ -54,6 +54,9 @@ const Navigation = () => {
                 <Link className="nav-items" to="/myOrders">
                   My Order
                 </Link>
+                <Link className="nav-items" to="/products/All">
+                  All Products
+                </Link>
               </div>
             </div>
             {/******************************************************************** */}
@@ -99,9 +102,7 @@ const Navigation = () => {
               </button>
               <div className="together">
                 <Badge
-                  badgeContent={
-                    productInLocalStorage ? productInLocalStorage.length : "0"
-                  }
+                  badgeContent={cart ? cart.length : "0"}
                   color="secondary"
                 />
                 <Link className="nav-items" to="/cart">
@@ -123,6 +124,9 @@ const Navigation = () => {
                 </Link>
                 <Link className="nav-items" to="/myOrders">
                   My Order
+                </Link>
+                <Link className="nav-items" to="/products/All">
+                  All Products
                 </Link>
               </div>
             </div>
@@ -157,9 +161,7 @@ const Navigation = () => {
               </Link>
               <div className="right-badge">
                 <Badge
-                  badgeContent={
-                    productInLocalStorage ? productInLocalStorage.length : "0"
-                  }
+                  badgeContent={cart ? cart.length : "0"}
                   color="secondary"
                 />
                 <Link className="nav-items" to="/cart">

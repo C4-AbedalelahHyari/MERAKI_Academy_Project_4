@@ -5,6 +5,7 @@ import Footer from "./Footer";
 const GetMyOrder = () => {
   const [myOrder, setMyOrder] = useState([]);
   const { token } = useContext(UserContext);
+  const [message, setMessage] = useState("");
   /******************************************** */
   const getMyOrder = async () => {
     try {
@@ -18,14 +19,20 @@ const GetMyOrder = () => {
       }
     } catch (error) {
       console.log(error.response);
+      setMessage(error.response.data.message);
     }
   };
+  useEffect(() => {
+    getMyOrder();
+  }, [myOrder]);
   /****************************************************** */
   return (
     <>
       <div>
-        <h1 className="center">Your Order on the way!</h1>
-        <button onClick={getMyOrder}>GET</button>
+        <h1 className="center">{message}</h1>
+        <button className="getMyOrder" onClick={getMyOrder}>
+          GET
+        </button>
       </div>
       <div className="cartBottom">
         <div className="cartInfo">
@@ -33,6 +40,7 @@ const GetMyOrder = () => {
             ? myOrder.map((element, index) => {
                 return (
                   <>
+                    <h1 className="center">Your order on the way!</h1>
                     <div className="productCart" key={index}>
                       <div className="ProductInfo" key={index}>
                         <img

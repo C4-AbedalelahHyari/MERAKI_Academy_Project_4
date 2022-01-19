@@ -29,8 +29,12 @@ const createNewProduct = (req, res) => {
 };
 /*********************************************************** */
 const getAllProducts = (req, res) => {
+  const limit = parseInt(req.query.limit); // Make sure to parse the limit to number
+  const skip = parseInt(req.query.skip); // Make sure to parse the skip to number
   productsModel
     .find({})
+    .skip(skip)
+    .limit(limit)
     .populate("category", "-_id -__v")
     .then((products) => {
       if (products.length) {

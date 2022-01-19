@@ -9,6 +9,11 @@ const LoginProvider = (props) => {
   const history = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState("");
+  const [cart, setCart] = useState(
+    localStorage.getItem("product")
+      ? JSON.parse(localStorage.getItem("product"))
+      : []
+  ); //local || []
 
   // =================================================================
 
@@ -39,6 +44,8 @@ const LoginProvider = (props) => {
     logout,
     saveToken,
     setIsLoggedIn,
+    cart,
+    setCart,
   };
   // =================================================================
 
