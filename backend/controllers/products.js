@@ -1,7 +1,7 @@
 const productsModel = require("../database/models/products");
 /************************************************************** */
 const createNewProduct = (req, res) => {
-  const { name, price, rating, imageSrc, category, description } = req.body;
+  const { name, price, rating, imageSrc, category, description } = req.body;  
   const newProduct = new productsModel({
     name,
     price,

@@ -1,20 +1,23 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../context/user";
-import Product from "./Products";
 import Footer from "./Footer";
+import storage from "./firebase";
+/**************************************************** */
 const AdminView = () => {
+  const { token } = useContext(UserContext);
+  /************************************************* */
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(0);
   const [views, setViews] = useState(0);
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
-  const { token } = useContext(UserContext);
   /******************************************** */
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [newCategory, setNewCategory] = useState("");
+  const [url, setUrl] = useState("");
   /******************************************** */
   const AddNewCategory = async () => {
     try {
@@ -38,28 +41,37 @@ const AdminView = () => {
   };
   /************************************************* */
   const addNewProduct = async () => {
-    // const upload = () => {
-    //   if (image == null) return;
-    //   storage
-    //     .ref(`/images/${image.name}`)
-    //     .put(image)
-    //     .on("state_changed", alert("success"), alert);
-    //   console.log(storage);
+    if (image == null) return "Upload image please";
+    storage
+      .ref(`/images/${image.name}`)
+      .put(image)
+      .on("state_changed", alert("success"), alert);
 
     // download
-    //  storage.ref("/images").child(image.name).getDownloadURL().then((result)=>{setUrl(result)})
+   try {
+     await storage
+      .ref("images")
+      .child(image.name)
+      .getDownloadURL()
+      .then((result) => {
+        console.log(result);
+        setUrl(result);
+      });
 
-    // };
-    try {
+    console.log(url);
+    
       const product = {
         name,
         price,
         rating,
         views,
-        image,
+        imageSrc: url,
         category,
       };
+      console.log(product);
+
       const result = await axios.post(
+        
         "http://localhost:5000/products/add",
         product,
         {
@@ -73,9 +85,9 @@ const AdminView = () => {
       } else throw Error;
     } catch (error) {
       if (error.response && error.response.data) {
-        return setMessage(error.response.data.message);
+        setMessage(error.response.data.message);
+        console.log(error.response.data.message);
       }
-      setMessage("Error happened while Login, please try again");
     }
   };
 
@@ -125,7 +137,6 @@ const AdminView = () => {
             placeholder="Category"
             onChange={(e) => setCategory(e.target.value)}
           />
-
           <br />
           <br />
           <button className="addProductButton" onClick={addNewProduct}>

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import storage from "./firebase";
 import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
 import Footer from "./Footer";
 /*********************************************************** */
@@ -12,6 +13,8 @@ const AllProducts = () => {
   const navigate = useNavigate();
   /*************************************************** */
   const getAllProducts = async (limit, skip) => {
+    // download
+    // storage.ref("/images").child(image.name).getDownloadURL().then((result)=>{setUrl(result)})
     try {
       const result = await axios.get(
         `http://localhost:5000/products?limit=${limit}&skip=${skip}`
@@ -28,7 +31,7 @@ const AllProducts = () => {
   useEffect(() => {
     getAllProducts(limit, skip);
   }, [skip, limit]);
-  /***************************** */
+  /*************************************** */
 
   const nextPage = () => {
     setSkip(skip + limit);
@@ -38,13 +41,6 @@ const AllProducts = () => {
     setSkip(skip - limit);
   };
   /************************************************ */
-  // const addToCart = () => {
-  //   const previousData = JSON.parse(localStorage.getItem("product")) || [];
-  //   console.log(previousData);
-  //   arr = [...previousData, product];
-  //   localStorage.setItem("product", JSON.stringify(arr));
-  // };
-
   return (
     <>
       <div className="product-container-map">
