@@ -29,7 +29,13 @@ const GetMyOrder = () => {
   return (
     <>
       <div>
-        <h1 className="center">{message}</h1>
+        <h1 className="center">
+          {message ? (
+            message
+          ) : (
+            <h4 className="center">Your order on the way!</h4>
+          )}
+        </h1>
         <button className="getMyOrder" onClick={getMyOrder}>
           GET
         </button>
@@ -40,7 +46,6 @@ const GetMyOrder = () => {
             ? myOrder.map((element, index) => {
                 return (
                   <>
-                    <h1 className="center">Your order on the way!</h1>
                     <div className="productCart" key={index}>
                       <div className="ProductInfo" key={index}>
                         <img

@@ -8,6 +8,7 @@ import Footer from "./Footer";
 const Cart = () => {
   const { token, setCart, cart } = useContext(UserContext);
   const productInLocalStorage = JSON.parse(localStorage.getItem("product"));
+  const [message, setMessage] = useState("");
   const [totalPriceValue, setTotalPrice] = useState(
     cart
       ? cart.reduce((acc, element, index) => {
@@ -73,8 +74,8 @@ const Cart = () => {
           </div>
           <div className="cartBottom">
             <div className="cartInfo">
-              {productInLocalStorage
-                ? productInLocalStorage.map((element, index) => {
+              {cart
+                ? cart.map((element, index) => {
                     return (
                       <>
                         <div className="productCart" key={index}>
@@ -136,12 +137,11 @@ const Cart = () => {
               <div className="summaryItem">
                 <h4 className="itemText">Total</h4>
                 <h4 className="itemPrice">
-                  {" "}
                   {totalPriceValue
                     ? Math.round(
                         totalPriceValue - Math.round(totalPriceValue * 0.16)
                       )
-                    : ""}{" "}
+                    : ""}
                   JOD
                 </h4>
               </div>

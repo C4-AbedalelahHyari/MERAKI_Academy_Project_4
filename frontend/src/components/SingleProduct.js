@@ -134,7 +134,6 @@ const Product = () => {
                   setImageSrc(e.target.value);
                 }}
               />
-
               <input
                 className="category"
                 placeholder="Category"
