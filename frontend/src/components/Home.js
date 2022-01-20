@@ -2,6 +2,7 @@ import React from "react";
 import Products from "./Products";
 import banner from "../images/banner.jpg";
 import Footer from "./Footer";
+import FooterHome from "./FooterHome";
 
 const Home = () => {
   return (
@@ -13,8 +14,8 @@ const Home = () => {
         </div>
         <h1 className="text">Featured Products</h1>
         <Products />
-        <Footer />
       </div>
+      <FooterHome />
     </>
   );
 };

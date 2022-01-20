@@ -11,11 +11,14 @@ import Cart from "./components/Cart";
 import GetMyOrder from "./components/GetMyOrder";
 import Products from "./components/Products";
 import AllProducts from "./components/AllProducts";
+import Footer from "./components/Footer";
+import FooterHome from "./components/FooterHome";
 
 function App() {
   return (
     <div className="App">
       <Navigation />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

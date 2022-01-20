@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Add, DeleteForever, Remove } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/user";
@@ -16,6 +16,15 @@ const Cart = () => {
         }, 0)
       : 0
   );
+  useEffect(() => {
+    setTotalPrice(
+      cart
+        ? cart.reduce((acc, element, index) => {
+            return acc + element.price;
+          }, 0)
+        : 0
+    );
+  }, [cart]);
   /******************************************************************** */
   const product_id = productInLocalStorage
     ? productInLocalStorage.map((element, index) => {

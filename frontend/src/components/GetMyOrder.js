@@ -36,9 +36,9 @@ const GetMyOrder = () => {
             <h4 className="center">Your order on the way!</h4>
           )}
         </h1>
-        <button className="getMyOrder" onClick={getMyOrder}>
+        {/* <button className="getMyOrder" onClick={getMyOrder}>
           GET
-        </button>
+        </button> */}
       </div>
       <div className="cartBottom">
         <div className="cartInfo">

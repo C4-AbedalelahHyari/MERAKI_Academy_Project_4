@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
-import GoogleLogin, { GoogleLogout } from "react-google-login";
+import GoogleLogin from "react-google-login";
 import Footer from "./Footer";
+/****************************************************** */
 const Login = () => {
   const { setIsLoggedIn, isLoggedIn, saveToken } = useContext(UserContext);
   const [email, setEmail] = useState("");
@@ -30,13 +31,13 @@ const Login = () => {
       setMessage("Error happened while Login, please try again");
     }
   };
-  /**************************************** */
+  /********************************************* */
   useEffect(() => {
     if (isLoggedIn) {
       navigator("/");
     }
   });
-  /*************************************** */
+  /***************************************** */
   const responseGoogle = (response) => {
     const googleToken = response.tokenObj.id_token;
     console.log(response);

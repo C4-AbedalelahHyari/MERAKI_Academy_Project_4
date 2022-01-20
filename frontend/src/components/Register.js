@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Footer from "./Footer";
+/*********************************************************************************************************** */
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const role = "61db4af3202167e1eaa4767f";
-  /********************************************* */
+  /************************************************************************************** */
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
-  /******************************************************** */
+  /*********************************************************************** */
   const addNewUser = async () => {
     try {
       const result = await axios.post("http://localhost:5000/users", {
@@ -79,8 +80,8 @@ const Register = () => {
               : message && <div className="ErrorMessage">{message}</div>}
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

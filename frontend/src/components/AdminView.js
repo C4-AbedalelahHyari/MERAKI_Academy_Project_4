@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../context/user";
-import Footer from "./Footer";
 import storage from "./firebase";
-/**************************************************** */
+import Footer from "./Footer";
+/************************************************** */
 const AdminView = () => {
   const { token } = useContext(UserContext);
-  /************************************************* */
+  /********************************************* */
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(0);
@@ -24,7 +24,7 @@ const AdminView = () => {
       const result = await axios.post(
         "http://localhost:5000/categories",
         {
-          newCategory,
+          title: newCategory,
         },
         {
           headers: {
@@ -39,6 +39,7 @@ const AdminView = () => {
       console.log(error.response);
     }
   };
+  console.log(typeof newCategory);
   /************************************************* */
   const addNewProduct = async () => {
     if (image == null) return "Upload image please";
@@ -48,18 +49,16 @@ const AdminView = () => {
       .on("state_changed", alert("success"), alert);
 
     // download
-   try {
-     await storage
-      .ref("images")
-      .child(image.name)
-      .getDownloadURL()
-      .then((result) => {
-        console.log(result);
-        setUrl(result);
-      });
+    try {
+      await storage
+        .ref("images")
+        .child(image.name)
+        .getDownloadURL()
+        .then((result) => {
+          console.log(result);
+          setUrl(result);
+        });
 
-    console.log(url);
-    
       const product = {
         name,
         price,
@@ -71,7 +70,6 @@ const AdminView = () => {
       console.log(product);
 
       const result = await axios.post(
-        
         "http://localhost:5000/products/add",
         product,
         {

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import storage from "./firebase";
 import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
@@ -8,9 +8,9 @@ import Footer from "./Footer";
 let arr = [];
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
-  const [limit, setLimit] = useState(5);
-  const [skip, setSkip] = useState(0);
-  const navigate = useNavigate();
+  const [limit, setLimit] = useState(5); // fixed
+  const [skip, setSkip] = useState(5); //
+  const [page, setPage] = useState(1);
   /*************************************************** */
   const getAllProducts = async (limit, skip) => {
     // download
@@ -43,6 +43,15 @@ const AllProducts = () => {
   /************************************************ */
   return (
     <>
+      <div className="selectContainer">
+        <select className="selectOptions">
+          <option value="">men clothing</option>
+          <option value="">jewelry</option>
+          <option value="">electronics</option>
+          <option value="">women clothing</option>
+        </select>
+      </div>
+
       <div className="product-container-map">
         {products.map((element, index) => {
           return (

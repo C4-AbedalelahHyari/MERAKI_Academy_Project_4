@@ -5,20 +5,20 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { Add, Remove, Star } from "@material-ui/icons";
 import Footer from "./Footer";
-//************************************************************** */
+/***************************************************************************************************************** */
 let arr = [];
-/************************************************** */
+/**************************************************** */
 const Product = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  /******************************************* */
+  /********************************************* */
   const [product, setProduct] = useState({});
   const [counter, setCounter] = useState(1);
-  /******************************************* */
+  /**************************************** */
   const { token, cart, setCart } = useContext(UserContext);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
-  /******************************************* */
+  /***************************************** */
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(0);
@@ -68,10 +68,10 @@ const Product = () => {
           <h2 className="singleProductName">{product.name}</h2>
           <span className="singleProductPrice">{product.price} JOD</span>
           <div className="rating-star">
-            <h3>
+            <h1 className="ratingProduct">
               {product.rating}
               <Star style={{ color: "tomato", fontSize: 40 }} />
-            </h3>
+            </h1>
           </div>
           <p>{product.description}</p>
           <div className="addToCart">
