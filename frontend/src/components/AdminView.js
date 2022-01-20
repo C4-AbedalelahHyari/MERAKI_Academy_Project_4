@@ -39,15 +39,15 @@ const AdminView = () => {
       console.log(error.response);
     }
   };
-  console.log(typeof newCategory);
   /************************************************* */
   const addNewProduct = async () => {
-    if (image == null) return "Upload image please";
-    storage
-      .ref(`/images/${image.name}`)
-      .put(image)
-      .on("state_changed", alert("success"), alert);
-
+    const upload = () => {
+      if (image == null) return "Upload image please";
+      storage
+        .ref(`/images/${image.name}`)
+        .put(image)
+        .on("state_changed", alert("success"), alert);
+    };
     // download
     try {
       await storage
@@ -129,7 +129,8 @@ const AdminView = () => {
                 setImage(e.target.files[0]);
               }}
             />
-
+            <br />
+            <button onClick={upload}>Upload</button>
             <br />
             <input
               className="category"

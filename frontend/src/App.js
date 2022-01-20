@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Navigation />
-      
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
@@ -26,6 +26,15 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/myOrders" element={<GetMyOrder />} />
         <Route path="/products/All" element={<AllProducts />} />
+        <Route
+          path="*"
+          element={
+            <h1 className="center">
+              {" "}
+              404 NOT FOUND: The page you are looking for doesn't exist{" "}
+            </h1>
+          }
+        />
       </Routes>
     </div>
   );

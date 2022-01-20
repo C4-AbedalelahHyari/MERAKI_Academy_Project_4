@@ -32,9 +32,11 @@ const Navigation = () => {
       ? products.find((element, index) => {
           if (element.name.toLowerCase() == name.toLowerCase()) {
             navigate(`/product/${element._id}`);
+          } else {
+            navigate("*");
           }
         })
-      : "Nothing To Show";
+      : "";
   };
   useEffect(() => {
     getAllProducts();

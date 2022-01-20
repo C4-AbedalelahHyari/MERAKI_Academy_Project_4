@@ -241,7 +241,8 @@ p {
   display: flex;
   align-items: center;
   width: 50%;
-  justify-content: space-around;
+  margin: 60px 0px 0px 30px;
+  justify-content: space-evenly;
 }
 .spanSingleProduct {
   cursor: pointer;

@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import storage from "./firebase";
 import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
-import Footer from "./Footer";
 /*********************************************************** */
 let arr = [];
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
-  const [limit, setLimit] = useState(9); // fixed
-  const [skip, setSkip] = useState(5); //
-  const [page, setPage] = useState(1);
+  let [limit, setLimit] = useState(9);
+  let [skip, setSkip] = useState(0);
+  let [page, setPage] = useState(1);
   /********************************************* */
   const [filterCategory, setFilterCategory] = useState("");
   /*************************************************** */
@@ -30,15 +29,15 @@ const AllProducts = () => {
       console.log(error);
     }
   };
+  /************************************************** */
   useEffect(() => {
     getAllProducts(limit, skip);
   }, [skip, limit]);
-  console.log(products);
-  console.log(filterCategory);
+  /******************************************* */
   const filteredCategory = products.filter((e, i) => {
     return e.category.title === filterCategory;
   });
-  console.log(filteredCategory);
+  /**************************** */
   useEffect(() => {
     if (filteredCategory.length) {
       setProducts(filteredCategory);
@@ -47,11 +46,17 @@ const AllProducts = () => {
   /*************************************** */
 
   const nextPage = () => {
-    setSkip(skip + limit);
+    if (skip <= products.length) {
+      setSkip(skip + limit);
+      setPage(++page);
+    }
   };
 
   const previousPage = () => {
-    setSkip(skip - limit);
+    if (skip > 0) {
+      setSkip(skip - limit);
+      setPage(--page);
+    }
   };
   /************************************************ */
   return (
@@ -93,10 +98,11 @@ const AllProducts = () => {
           })}
         </div>
         <div className="pagination">
-          <button className="pagButton" onClick={nextPage}>
+          <button className="pagButton" onClick={previousPage}>
             Previous Page
           </button>
-          <button className="pagButton" onClick={previousPage}>
+          <h1>( {page} )</h1>
+          <button className="pagButton" onClick={nextPage}>
             Next Page
           </button>
         </div>

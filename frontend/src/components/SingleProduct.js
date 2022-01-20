@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { Add, Remove, Star } from "@material-ui/icons";
-import Footer from "./Footer";
 /***************************************************************************************************************** */
 let arr = [];
 /**************************************************** */
@@ -134,6 +133,8 @@ const Product = () => {
                   setImageSrc(e.target.value);
                 }}
               />
+              <br />
+
               <input
                 className="category"
                 placeholder="Category"
