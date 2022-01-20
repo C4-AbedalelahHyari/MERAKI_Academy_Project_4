@@ -208,7 +208,6 @@ const Product = () => {
       ) : (
         <></>
       )}
-      <Footer />
     </div>
   );
 };

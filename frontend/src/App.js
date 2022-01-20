@@ -11,8 +11,6 @@ import Cart from "./components/Cart";
 import GetMyOrder from "./components/GetMyOrder";
 import Products from "./components/Products";
 import AllProducts from "./components/AllProducts";
-import Footer from "./components/Footer";
-import FooterHome from "./components/FooterHome";
 
 function App() {
   return (

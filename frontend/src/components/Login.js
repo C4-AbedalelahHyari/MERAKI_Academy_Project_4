@@ -84,7 +84,6 @@ const Login = () => {
           ? message && <div className="SuccessMessage">{message}</div>
           : message && <div className="ErrorMessage">{message}</div>}
       </div>
-      <Footer />
     </div>
   );
 };

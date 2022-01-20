@@ -90,77 +90,78 @@ const AdminView = () => {
   };
 
   return (
-    <div className="flexAdmin">
-      <div className="ProductForm">
-        <h1>Add New Product</h1>
-        <div className="Product">
-          <br />
-          <input
-            className="productName"
-            type="text"
-            placeholder="Product Name"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <br />
-          <input
-            className="price"
-            placeholder="Price"
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <br />
-          <input
-            className="rating"
-            placeholder="Rating"
-            onChange={(e) => setRating(e.target.value)}
-          />
-          <br />
-          <input
-            className="views"
-            placeholder="Views"
-            onChange={(e) => setViews(e.target.value)}
-          />
-          <br />
-          <input
-            className="imageSrc"
-            placeholder="Image Source"
-            type="file"
-            onChange={(e) => {
-              setImage(e.target.files[0]);
-            }}
-          />
+    <>
+      <div className="flexAdmin">
+        <div className="ProductForm">
+          <h1>Add New Product</h1>
+          <div className="Product">
+            <br />
+            <input
+              className="productName"
+              type="text"
+              placeholder="Product Name"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <br />
+            <input
+              className="price"
+              placeholder="Price"
+              onChange={(e) => setPrice(e.target.value)}
+            />
+            <br />
+            <input
+              className="rating"
+              placeholder="Rating"
+              onChange={(e) => setRating(e.target.value)}
+            />
+            <br />
+            <input
+              className="views"
+              placeholder="Views"
+              onChange={(e) => setViews(e.target.value)}
+            />
+            <br />
+            <input
+              className="imageSrc"
+              placeholder="Image Source"
+              type="file"
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+              }}
+            />
 
-          <br />
-          <input
-            className="category"
-            placeholder="Category"
-            onChange={(e) => setCategory(e.target.value)}
-          />
-          <br />
-          <br />
-          <button className="addProductButton" onClick={addNewProduct}>
-            Add Product
-          </button>
+            <br />
+            <input
+              className="category"
+              placeholder="Category"
+              onChange={(e) => setCategory(e.target.value)}
+            />
+            <br />
+            <br />
+            <button className="addProductButton" onClick={addNewProduct}>
+              Add Product
+            </button>
+          </div>
+          {status
+            ? message && <div className="SuccessMessage">{message}</div>
+            : message && <div className="ErrorMessage">{message}</div>}
         </div>
-        {status
-          ? message && <div className="SuccessMessage">{message}</div>
-          : message && <div className="ErrorMessage">{message}</div>}
-      </div>
-      <div className="CategoryForm">
-        <h1>Add New Category</h1>
-        <div className="Category">
-          <input
-            className="category"
-            placeholder="Add New Category"
-            onChange={(e) => setNewCategory(e.target.value)}
-          />
-          <br />
-          <button className="addProductButton" onClick={AddNewCategory}>
-            Add New Category
-          </button>
+        <div className="CategoryForm">
+          <h1>Add New Category</h1>
+          <div className="Category">
+            <input
+              className="category"
+              placeholder="Add New Category"
+              onChange={(e) => setNewCategory(e.target.value)}
+            />
+            <br />
+            <button className="addProductButton" onClick={AddNewCategory}>
+              Add New Category
+            </button>
+          </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 

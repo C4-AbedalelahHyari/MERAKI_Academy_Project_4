@@ -70,7 +70,6 @@ const GetMyOrder = () => {
             : "Your dont have any order yet"}
         </div>
       </div>
-      <Footer />
     </>
   );
 };
