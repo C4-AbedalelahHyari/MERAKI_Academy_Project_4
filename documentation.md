@@ -8,8 +8,8 @@
 ---
 
 <p align="center"> its E-commerce platform (single store application) that contain two types of user 
-    a- Admin(Vendor)
-    b- Customer
+    a- Admin(Vendor): he can modify the products(Add, update, delete) and he can add new category
+    b- Customer: he can explore the products and make order contain specific items
     <br> 
 </p>
 
@@ -23,41 +23,44 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+its a e-commerce platform, its a website. the vendor can display his products and he can update, delete, add them. The customer can explore the vendor products and make a order
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+1- clone the repo
+2- open the gitbash and write npm i to build the application
+2- run the application by using npm start
+3- install the data-base mongoDB
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
 ```
-Give examples
+- mongoose
+- bcryptjs
+- jwt
+- axios
+- jwt-decode
+- @material-ui/core
+- @material-ui/icons
+- firebase
+- react-google-login
+- react-router-dom
 ```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running.
 
-Say what the step will be
-
 ```
-Give the example
+after you clone the repo to your computer and installing the Prerequisites. after this you should have package.json in your application that will contain the packages that will be required in this application.
 ```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+1- you can browse the products
+2- you can filter the products by a specific category
+3- you can add products to your cart
+4- you can make an order
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -65,6 +68,8 @@ Add notes about how to use the system.
 - [Express JS](https://expressjs.com/) - Server Framework
 - [React JS](https://https://reactjs.org/) - Web Framework
 - [Node JS](https://nodejs.org/en/) - Server Environment
+- [Google cloud platform](https://console.cloud.google.com/) - Google cloud Platform
+- [Fire Base](https://firebase.google.com/) - Fire base
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 
