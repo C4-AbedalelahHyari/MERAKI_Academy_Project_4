@@ -5,6 +5,8 @@ import { Search, Security, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge, Input } from "@material-ui/core";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import logo1 from "../images/logo1.png";
+import logo from "../images/logo.jpg";
 /******************************************************************* */
 const Navigation = () => {
   const { logout, token, cart } = useContext(UserContext);
@@ -20,10 +22,10 @@ const Navigation = () => {
       if (result.data.success) {
         setProducts(result.data.products);
       } else {
-        console.log(`cannot Get the Products`);
+        return false;
       }
     } catch (error) {
-      console.log(error);
+      return false;
     }
   };
   /************************************************************************** */
@@ -32,8 +34,6 @@ const Navigation = () => {
       ? products.find((element, index) => {
           if (element.name.toLowerCase() == name.toLowerCase()) {
             navigate(`/product/${element._id}`);
-          } else {
-            navigate("*");
           }
         })
       : "";
@@ -51,7 +51,7 @@ const Navigation = () => {
             <div className="left">
               <div className="together_2">
                 <Link className="nav-items" to="/">
-                  Home
+                  E-Shop<span className="eee_nav">eee</span>
                 </Link>
                 <Link className="nav-items" to="/myOrders">
                   My Order
@@ -65,6 +65,7 @@ const Navigation = () => {
             <div className="center">
               <div className="searchBar">
                 <Input
+                  value={name}
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
@@ -75,7 +76,10 @@ const Navigation = () => {
                 />
                 <Search
                   className="SearchIcon"
-                  onClick={func}
+                  onClick={() => {
+                    func();
+                    setName("");
+                  }}
                   style={{ color: "black", fontSize: 30 }}
                 />
               </div>
@@ -122,7 +126,7 @@ const Navigation = () => {
             <div className="left">
               <div className="together_2">
                 <Link className="nav-items" to="/">
-                  Home
+                  E-Shop<span className="eee_nav">eee</span>
                 </Link>
                 <Link className="nav-items" to="/myOrders">
                   My Order

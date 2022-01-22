@@ -3,7 +3,6 @@ import { Add, DeleteForever, Remove } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/user";
 import axios from "axios";
-import Footer from "./Footer";
 /******************************************************************** */
 const Cart = () => {
   const { token, setCart, cart } = useContext(UserContext);
@@ -54,12 +53,11 @@ const Cart = () => {
         }
       );
       if (res.data.success) {
-        console.log(res.data);
         localStorage.removeItem("product");
       } else {
       }
     } catch (error) {
-      console.log(error);
+      return false;
     }
   };
   /******************************************************************** */
@@ -154,7 +152,14 @@ const Cart = () => {
                   JOD
                 </h4>
               </div>
-              <button onClick={createOrder} className="checkOutCart">
+              <button
+                onClick={(e) => {
+                  createOrder();
+                  e.target.style.background = "yellowgreen";
+                  e.target.style.color = "black";
+                }}
+                className="checkOutCart"
+              >
                 Check Out Now
               </button>
             </div>

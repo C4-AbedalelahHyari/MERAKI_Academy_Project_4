@@ -1,7 +1,7 @@
 const productsModel = require("../database/models/products");
 /************************************************************** */
 const createNewProduct = (req, res) => {
-  const { name, price, rating, imageSrc, category, description } = req.body;  
+  const { name, price, rating, imageSrc, category, description } = req.body;
   const newProduct = new productsModel({
     name,
     price,
@@ -20,7 +20,6 @@ const createNewProduct = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({
         success: false,
         message: `Server Error`,
@@ -78,7 +77,6 @@ const getProductById = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({
         success: false,
         message: `Server Error`,

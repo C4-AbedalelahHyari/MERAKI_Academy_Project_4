@@ -18,7 +18,6 @@ const GetMyOrder = () => {
         setMyOrder(res.data.orders[0].product_id);
       }
     } catch (error) {
-      console.log(error.response);
       setMessage(error.response.data.message);
     }
   };
@@ -36,9 +35,6 @@ const GetMyOrder = () => {
             <h4 className="center">Your order on the way!</h4>
           )}
         </h1>
-        {/* <button className="getMyOrder" onClick={getMyOrder}>
-          GET
-        </button> */}
       </div>
       <div className="cartBottom">
         <div className="cartInfo">

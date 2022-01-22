@@ -18,10 +18,10 @@ const Products = () => {
       if (result.data.success) {
         setProducts(result.data.products);
       } else {
-        console.log(`cannot Get`);
+        return false;
       }
     } catch (error) {
-      console.log(error);
+      return false;
     }
   };
   /*************************************** */
@@ -38,12 +38,6 @@ const Products = () => {
     setSkip(skip - limit);
   };
   /************************************************ */
-  // const addToCart = () => {
-  //   const previousData = JSON.parse(localStorage.getItem("product")) || [];
-  //   console.log(previousData);
-  //   arr = [...previousData, product];
-  //   localStorage.setItem("product", JSON.stringify(arr));
-  // };
 
   return (
     <>

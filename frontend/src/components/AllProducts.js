@@ -23,10 +23,10 @@ const AllProducts = () => {
       if (result.data.success) {
         setProducts(result.data.products);
       } else {
-        console.log(`cannot Get`);
+        return false;
       }
     } catch (error) {
-      console.log(error);
+      return false;
     }
   };
   /************************************************** */

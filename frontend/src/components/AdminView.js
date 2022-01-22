@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../context/user";
 import storage from "./firebase";
-import Footer from "./Footer";
 /************************************************** */
 const AdminView = () => {
   const { token } = useContext(UserContext);
@@ -11,6 +10,7 @@ const AdminView = () => {
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(0);
   const [views, setViews] = useState(0);
+  const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   /******************************************** */
@@ -33,21 +33,16 @@ const AdminView = () => {
         }
       );
       if (result.data.success) {
-        console.log(`The Category has been created successfully`);
+        return true;
       } else throw Error;
     } catch (error) {
-      console.log(error.response);
+      return false;
     }
   };
-  /************************************************* */
+  if (image == null) return "Upload image please";
+  storage.ref(`/images/${image.name}`).put(image);
+  /************************************************************************************** */
   const addNewProduct = async () => {
-    const upload = () => {
-      if (image == null) return "Upload image please";
-      storage
-        .ref(`/images/${image.name}`)
-        .put(image)
-        .on("state_changed", alert("success"), alert);
-    };
     // download
     try {
       await storage
@@ -55,7 +50,6 @@ const AdminView = () => {
         .child(image.name)
         .getDownloadURL()
         .then((result) => {
-          console.log(result);
           setUrl(result);
         });
 
@@ -64,11 +58,10 @@ const AdminView = () => {
         price,
         rating,
         views,
+        description: desc,
         imageSrc: url,
         category,
       };
-      console.log(product);
-
       const result = await axios.post(
         "http://localhost:5000/products/add",
         product,
@@ -83,8 +76,7 @@ const AdminView = () => {
       } else throw Error;
     } catch (error) {
       if (error.response && error.response.data) {
-        setMessage(error.response.data.message);
-        console.log(error.response.data.message);
+        return false;
       }
     }
   };
@@ -122,6 +114,12 @@ const AdminView = () => {
             />
             <br />
             <input
+              className="views"
+              placeholder="Description"
+              onChange={(e) => setDesc(e.target.value)}
+            />
+            <br />
+            <input
               className="imageSrc"
               placeholder="Image Source"
               type="file"
@@ -130,8 +128,6 @@ const AdminView = () => {
               }}
             />
             <br />
-            <button onClick={upload}>Upload</button>
-            <br />
             <input
               className="category"
               placeholder="Category"
@@ -139,13 +135,17 @@ const AdminView = () => {
             />
             <br />
             <br />
-            <button className="addProductButton" onClick={addNewProduct}>
+            <button
+              className="addProductButton"
+              onClick={(e) => {
+                addNewProduct();
+                e.target.style.background = "yellowgreen";
+                e.target.style.color = "black";
+              }}
+            >
               Add Product
             </button>
           </div>
-          {status
-            ? message && <div className="SuccessMessage">{message}</div>
-            : message && <div className="ErrorMessage">{message}</div>}
         </div>
         <div className="CategoryForm">
           <h1>Add New Category</h1>
@@ -156,7 +156,14 @@ const AdminView = () => {
               onChange={(e) => setNewCategory(e.target.value)}
             />
             <br />
-            <button className="addProductButton" onClick={AddNewCategory}>
+            <button
+              className="addProductButton"
+              onClick={(e) => {
+                AddNewCategory();
+                e.target.style.background = "yellowgreen";
+                e.target.style.color = "black";
+              }}
+            >
               Add New Category
             </button>
           </div>

@@ -30,6 +30,7 @@ const LoginProvider = (props) => {
     localStorage.clear();
     history("/login");
     setToken("");
+    setCart([]);
   };
 
   useEffect(() => {

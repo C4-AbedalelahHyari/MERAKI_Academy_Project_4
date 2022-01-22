@@ -22,6 +22,7 @@ const Product = () => {
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(0);
   const [views, setViews] = useState(0);
+  const [description, setDescription] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [category, setCategory] = useState("");
   /************************************************* */
@@ -32,7 +33,7 @@ const Product = () => {
       const result = await axios.get(`http://localhost:5000/products/${id}`);
       setProduct(result.data.product);
     } catch (err) {
-      console.log(err);
+      return false;
     }
   };
   /************************* */
@@ -95,10 +96,10 @@ const Product = () => {
           <br />
           <br />
           <div className="center">
-            <h1>In this form you can update your product and delete it!</h1>
+            <h2>In this form you can update your product and delete it!</h2>
           </div>
           <div className="ProductForm">
-            <h1>Update The Product</h1>
+            <h2>Update The Product</h2>
             <div className="Product">
               <br />
               <input
@@ -127,6 +128,12 @@ const Product = () => {
               />
               <br />
               <input
+                className="views"
+                placeholder="description"
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <br />
+              <input
                 className="imageSrc"
                 placeholder="ImageSrc"
                 onChange={(e) => {
@@ -143,28 +150,33 @@ const Product = () => {
               <br />
               <br />
               <button
-                onClick={async () => {
+                onClick={async (e) => {
                   try {
-                    const updatedProduct = {
-                      name,
-                      price,
-                      rating,
-                      views,
-                      imageSrc,
-                      category,
-                    };
                     const result = await axios.put(
                       `http://localhost:5000/products/${id}`,
-                      updatedProduct,
+                      {
+                        name,
+                        price,
+                        rating,
+                        views,
+                        description,
+                        imageSrc,
+                        category,
+                      },
                       {
                         headers: {
                           Authorization: `Bearer ${token}`,
                         },
                       }
                     );
+                    if (result) {
+                      return result;
+                    }
                   } catch (error) {
-                    console.log(error);
+                    return false;
                   }
+                  e.target.style.background = "yellowgreen";
+                  e.target.style.color = "black";
                 }}
                 className="updateButtonAdmin"
               >
@@ -173,7 +185,7 @@ const Product = () => {
               <br />
               <br />
               <button
-                onClick={async () => {
+                onClick={async (e) => {
                   try {
                     const result = await axios.delete(
                       `http://localhost:5000/products/${id}`,
@@ -185,6 +197,9 @@ const Product = () => {
                       }
                     );
                     if (result.success) {
+                      setTimeout(() => {
+                        navigate("/");
+                      }, 3000);
                       return true;
                     }
                   } catch (error) {
@@ -195,6 +210,8 @@ const Product = () => {
                       "Error happened while Deleting the product, please try again"
                     );
                   }
+                  e.target.style.background = "yellowgreen";
+                  e.target.style.color = "black";
                 }}
                 className="deleteButtonAdmin"
               >
