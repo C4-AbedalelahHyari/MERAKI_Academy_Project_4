@@ -1,7 +1,8 @@
-# MERAKI_Academy_Project_4
-<h3 align="center">E-Shopeee</h3>
+# E-Shopeee
 
-<p align="center"> its single store application (E-commerce platform)
+<p align="center"> its a single store application (E-commerce platform)
+E-commerce web application developed to offer onlinesingle store to sell online by displaying vendorproducts. The vendor can manage, and update productsas required by changing products details, prices...etc.The customer can explore, shop products, and make anorder.
+Used technology:
 </p>
 
 ## 📝 Table of Contents
