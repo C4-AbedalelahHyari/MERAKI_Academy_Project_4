@@ -1,6 +1,7 @@
 # E-Shopeee
 
-<p align="center"> its a single store application (E-commerce platform)
+<p align="center"> its a single store application
+  <br>
 E-commerce web application developed to offer onlinesingle store to sell online by displaying vendorproducts. The vendor can manage, and update productsas required by changing products details, prices...etc.The customer can explore, shop products, and make anorder.
 Used technology:
 </p>
